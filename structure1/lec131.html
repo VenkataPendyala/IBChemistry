@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IB Chemistry 1.2.3 — Emission Spectra & The Electromagnetic Spectrum</title>
+
+  <!-- Computer Modern (LaTeX-like) text fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+
+  <!-- MathJax v3 with mhchem and light siunitx-like macros -->
+  <script>
+    window.MathJax = {
+      tex: {
+        packages: {'[+]': ['mhchem']},
+        macros: { SI: ["{#1\\,\\mathrm{#2}}",2], celsius:"{^\\circ\\!\\mathrm{C}}"}
+      },
+      loader: { load: ['[tex]/mhchem'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-bg:#e9f2fc;
+      --border:#e5e7eb; --table:#d7dbe2; --soft:#f8fafc; --accent:#0f766e;
+      --shadow: rgba(16,24,40,.08);
+    }
+    html,body {margin:0; padding:0; background:#fff; color:var(--ink);}
+    body {
+      font-family: "Computer Modern Serif","Latin Modern Roman","Times New Roman",Times,serif;
+      font-size: 18px; line-height: 1.6;
+    }
+    main {max-width: 1000px; margin: 40px auto; padding: 0 20px 84px;}
+    h1,h2,h3,h4 {font-family:"Computer Modern Serif",serif;}
+    h1 {font-weight:700; margin:0 0 6px;}
+    .byline {color: var(--muted); margin-bottom: 8px;}
+    hr {border:0; border-top:1px solid var(--border); margin: 12px 0 24px;}
+    h2 {margin: 28px 0 12px; font-weight: 700;}
+    h3 {margin: 18px 0 10px; font-weight: 650;}
+    p {margin: 0 0 12px;}
+    ul, ol {margin: 0 0 14px 22px;}
+
+    .box {
+      background: var(--blue-bg);
+      border: 1px solid rgba(43,108,176,.45);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+    }
+    .box h3 {margin:0 0 6px; color: var(--blue);}
+
+    table {width:100%; border-collapse: collapse; margin: 8px 0 18px;}
+    th, td {padding: 10px 12px; border-bottom: 1px solid var(--border); text-align:left; vertical-align:top;}
+    thead th {border-bottom: 2px solid var(--table); font-weight:650;}
+
+    .example { background:var(--soft); border:1px dashed var(--border); border-radius:10px; padding:10px 12px; margin:10px 0; }
+    .muted {color: var(--muted);}
+    .grid-2 {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;}
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      padding: 10px 12px; border-radius: 6px; margin: 10px 0 16px;
+    }
+
+    .fig {
+      background:#fff; border:1px solid var(--border); border-radius:12px;
+      padding:12px; margin: 12px 0 18px; box-shadow:0 6px 18px var(--shadow);
+    }
+    .fig img { display:block; width:100%; height:auto; border-radius:8px; }
+    .fig figcaption {font-size:.95rem; color:var(--muted); margin-top:8px; text-align:center;}
+    .fig.narrow { max-width: 800px; margin-left:auto; margin-right:auto; }
+
+    .nav {margin-top:28px;}
+    .nav a {margin-right: 12px; text-decoration:none; border:1px solid var(--border);
+      padding:6px 10px; border-radius:8px; background:#fff; color:var(--ink);}
+  </style>
+</head>
+<body>
+<main>
+  <h1>IB Chemistry 1.2.3 — Emission Spectra & The Electromagnetic Spectrum</h1>
+  <div class="byline">Venkata Pendyala</div>
+  <hr>
+
+  <h2>1) Understanding</h2>
+  <div class="box">
+    <h3>What produces an emission spectrum?</h3>
+    <p>
+      When atoms absorb energy, their electrons can be promoted to <em>excited states</em>. As these electrons return to lower energy levels, the atom emits <strong>photons</strong>.
+      Each transition releases a photon with energy
+      \[
+        E = h\nu = \frac{hc}{\lambda},
+      \]
+      so only specific wavelengths (or frequencies) appear — a <strong>line spectrum</strong>. In contrast, a <em>continuous spectrum</em> shows every wavelength in a region without gaps.
+    </p>
+  </div>
+
+  <h2>2) The electromagnetic spectrum: colour, wavelength, frequency, energy</h2>
+  <p>
+    Electromagnetic radiation spans a vast range of wavelengths \((\lambda)\) and frequencies \((\nu)\). These are related by \(c=\lambda\nu\). The photon energy is \(E=h\nu\), so:
+  </p>
+  <ul>
+    <li><strong>Shorter \(\lambda\)</strong> → <strong>higher \(\nu\)</strong> → <strong>higher \(E\)</strong> (e.g., UV, X-rays).</li>
+    <li><strong>Longer \(\lambda\)</strong> → <strong>lower \(\nu\)</strong> → <strong>lower \(E\)</strong> (e.g., IR, microwaves, radio).</li>
+    <li>Visible light spans roughly \(\lambda \approx \SI{400}{nm}\) (violet, high energy) to \(\approx \SI{700}{nm}\) (red, lower energy).</li>
+  </ul>
+
+  <figure class="fig">
+    <img src="https://www.primalucelab.com/img/cms/components-of-electromagnetic-spectrum.jpg"
+         alt="Electromagnetic spectrum from gamma rays to radio waves, including visible band" />
+    <figcaption>The electromagnetic spectrum. As \(\lambda\) decreases from radio → gamma, frequency \(\nu\) and photon energy \(E\) increase.</figcaption>
+  </figure>
+
+  <h2>3) Continuous vs. line spectra</h2>
+  <div class="grid-2">
+    <div>
+      <h3>Continuous spectrum</h3>
+      <p>
+        Produced by dense, hot sources (e.g., incandescent solids/liquids, or dense gases). All wavelengths in a range are present — no discrete gaps. A <em>continuous spectrum</em> can later show <strong>dark lines</strong> (absorption) if cooler gas is in the way.
+      </p>
+      <h3>Line spectra</h3>
+      <p>
+        Produced by excited, low-pressure gases (discrete atomic transitions). Each element has a <strong>fingerprint</strong> of lines at characteristic wavelengths; classic example: the Balmer series of hydrogen in the visible.
+      </p>
+    </div>
+    <figure class="fig">
+      <img src="https://ars.els-cdn.com/content/image/3-s2.0-B9780128223109000094-f01-16-9780128223109.jpg"
+           alt="Comparison of continuous, absorption and emission spectra"/>
+      <figcaption>Top: continuous spectrum; middle: absorption spectrum (dark lines where light was removed by gas); bottom: emission spectrum (bright lines at specific \(\lambda\)).</figcaption>
+    </figure>
+  </div>
+
+  <div class="callout">
+    <strong>IB focus:</strong> You should be able to <em>qualitatively</em> describe the relation between colour, \(\lambda\), \(\nu\), and \(E\); and distinguish continuous vs. line spectra from a description or diagram.
+  </div>
+
+  <h2>4) Atomic lines, levels, and colours</h2>
+  <p>
+    In atoms, electrons occupy quantized energy levels. A downward transition from level \(n_i\) to \(n_f\) emits a photon of energy \(\Delta E = E_{n_i}-E_{n_f}\).
+    For hydrogen, the <em>Balmer series</em> (to \(n_f=2\)) lies in the <strong>visible</strong> (H\(\alpha\) red \(\approx\SI{656}{nm}\), H\(\beta\) blue-green \(\approx\SI{486}{nm}\), etc.). Larger \(\Delta E\) → shorter \(\lambda\) → higher \(E\).
+  </p>
+
+  <h2>5) Worked examples</h2>
+
+  <div class="example">
+    <p><strong>Example A — From wavelength to energy and colour.</strong></p>
+    <p>
+      A bright emission line is observed at \(\lambda = \SI{486}{nm}\).
+      \[
+        \nu=\frac{c}{\lambda}=\frac{3.00\times10^{8}\ \mathrm{m\,s^{-1}}}{4.86\times10^{-7}\ \mathrm{m}} \approx 6.17\times10^{14}\ \mathrm{s^{-1}}
+      \]
+      \[
+        E=h\nu=(6.626\times10^{-34}\ \mathrm{J\,s})(6.17\times10^{14}\ \mathrm{s^{-1}})\approx 4.09\times10^{-19}\ \mathrm{J}
+      \]
+      This is the H\(\beta\) line (blue-green) in the Balmer series of hydrogen.
+    </p>
+  </div>
+
+  <div class="example">
+    <p><strong>Example B — Ranking by energy.</strong></p>
+    <p>
+      Rank \(\SI{410}{nm}\) (violet), \(\SI{589}{nm}\) (yellow), \(\SI{656}{nm}\) (red) by photon energy.
+      Since \(E\propto 1/\lambda\): \(\SI{410}{nm} > \SI{589}{nm} > \SI{656}{nm}\).
+    </p>
+  </div>
+
+  <div class="example">
+    <p><strong>Example C — Identify spectrum type from a scenario.</strong></p>
+    <p>
+      A hot filament lamp viewed directly: <em>continuous spectrum</em>. The same lamp viewed through a cool sodium vapour: <em>absorption spectrum</em> (dark lines near \(\SI{589}{nm}\)). A discharge tube of low-pressure hydrogen: <em>emission line spectrum</em> (distinct coloured lines).
+    </p>
+  </div>
+
+  <h2>6) Practice Problems (Challenging)</h2>
+  <ol>
+    <li>
+      Light of \(\lambda=\SI{410}{nm}\) (violet) is emitted in an atomic transition.
+      <ol type="a">
+        <li>Calculate \(\nu\) and \(E\) of one photon.</li>
+        <li>Compare its energy to a \(\SI{656}{nm}\) (red) photon: which is larger and by what factor?</li>
+      </ol>
+    </li>
+    <li>
+      A sodium lamp emits a strong yellow line near \(\SI{589}{nm}\).
+      <ol type="a">
+        <li>Explain why a sodium flame test is characteristically yellow.</li>
+        <li>Would you expect a continuous, absorption, or emission spectrum? Justify.</li>
+      </ol>
+    </li>
+    <li>
+      A star’s spectrum shows a continuous background with dark lines. Explain the origin of the dark lines and what information they provide about the star’s atmosphere.
+    </li>
+    <li>
+      Order the following by increasing wavelength (justify with \(E=h\nu\) and \(c=\lambda\nu\)): ultraviolet, infrared, red light, X-rays, microwaves.
+    </li>
+    <li>
+      A gas discharge tube emits two visible lines at \(\SI{486}{nm}\) and \(\SI{656}{nm}\). Which line corresponds to the <em>larger</em> energy level drop? Explain without calculations, then verify with \(E=hc/\lambda\).
+    </li>
+    <li>
+      A hydrogen-like ion shows its “Balmer-like” series at shorter wavelengths than hydrogen. Suggest a reason in terms of nuclear charge and level spacings.
+    </li>
+  </ol>
+
+  <div class="nav">
+    <a href="../index.html">Home</a>
+    <a href="lec122.html">Prev</a>
+    <a href="lec132.html">Next</a>
+  </div>
+
+  <div class="muted">
+    Picture notes: The first image illustrates the electromagnetic spectrum; the second contrasts continuous, absorption, and emission spectra. If you later record videos, embed them above these figures.
+  </div>
+</main>
+</body>
+</html>
