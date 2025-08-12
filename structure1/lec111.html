@@ -5,24 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IB Chemistry 1.1.1 — Classification of Matter</title>
 
-  <!-- MathJax v3 configured to support \ce{} (mhchem) and light siunitx-like macros -->
+  <!-- MathJax v3 configured to support \ce{} (mhchem) and siunitx-like macros -->
   <script>
     window.MathJax = {
       tex: {
-        packages: {'[+]': ['mhchem']},
+        packages: {'[+]': ['mhchem']},  // enable mhchem
         macros: {
           SI: ["{#1\\,\\mathrm{#2}}", 2],
           celsius: "{^\\circ\\!\\mathrm{C}}"
-        }
+        },
+        load: ['[tex]/mhchem'] // tell MathJax to load mhchem
       },
-      svg: {fontCache: 'global'}
+      loader: {
+        load: ['[tex]/mhchem']
+      },
+      svg: { fontCache: 'global' }
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/input/tex/extensions/mhchem.js"></script>
 
   <style>
-    /* Clean lecture-note style */
     :root {
       --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-bg:#e9f2fc;
       --border:#e5e7eb; --table:#d7dbe2;
@@ -53,7 +55,6 @@
       border-radius:10px; padding:10px 12px; margin:10px 0;
     }
     .muted {color: var(--muted);}
-    /* Better spacing for nested lists */
     ol > li {margin: 6px 0;}
     ol ol {margin-top: 6px;}
   </style>
@@ -64,157 +65,8 @@
   <div class="byline">Venkata Pendyala</div>
   <hr>
 
-  <h2>1. Overview</h2>
-  <p>
-    Matter — anything that has mass and occupies space — is classified by composition into
-    <strong>elements</strong>, <strong>compounds</strong>, and <strong>mixtures</strong>.
-    This framework helps predict properties, behavior, and appropriate separation methods.
-  </p>
-  <p>
-    Modern classification grew from Dalton’s atomic theory and laws such as Lavoisier’s
-    conservation of mass and Proust’s law of definite proportions.
-  </p>
-
-  <h2>2. Elements</h2>
-  <div class="box">
-    <h3>Definition</h3>
-    <p>
-      An <strong>element</strong> is a pure chemical substance consisting of only one type of atom; it
-      cannot be chemically decomposed into simpler substances.
-    </p>
-  </div>
-  <p>
-    Each element has a unique atomic number (proton count) and a symbol (often Latin-derived).
-    Elements can appear as monoatomic gases (He), diatomic molecules (\(\ce{O2}\), \(\ce{N2}\)),
-    or polyatomic forms (e.g., \(\ce{P4}\), \(\ce{S8}\)).
-  </p>
-  <p><strong>Examples:</strong> \(\ce{Fe}\) (iron), \(\ce{Au}\) (gold), \(\ce{He}\) (helium).</p>
-
-  <h2>3. Compounds</h2>
-  <div class="box">
-    <h3>Definition</h3>
-    <p>
-      A <strong>compound</strong> is a pure substance composed of atoms of two or more different
-      elements <em>chemically bonded</em> in a fixed ratio.
-    </p>
-  </div>
-  <p>
-    Compounds possess properties distinct from their elements. Composition is constant
-    (law of definite proportions). Example: reactive sodium and toxic chlorine combine
-    \(1{:}1\) to form table salt \(\ce{NaCl}\).
-  </p>
-  <p><strong>Examples:</strong> \(\ce{H2O}\), \(\ce{NaCl}\), \(\ce{CO2}\).</p>
-
-  <h2>4. Mixtures</h2>
-  <div class="box">
-    <h3>Definition</h3>
-    <p>
-      A <strong>mixture</strong> is a physical combination of two or more elements or compounds,
-      with no fixed ratio and no chemical bonding between components.
-    </p>
-  </div>
-  <p>
-    Components retain their properties and can be separated by <em>physical methods</em>.
-    Mixtures may be <strong>homogeneous</strong> (uniform; e.g., air, saltwater, brass)
-    or <strong>heterogeneous</strong> (non‑uniform; e.g., granite, sand + water).
-  </p>
-  <p><strong>Examples:</strong> air, seawater, oil and water.</p>
-
-  <h2>5. Comparative Summary</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Elements</th>
-        <th>Compounds</th>
-        <th>Mixtures</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Constituents</td>
-        <td>One type of atom</td>
-        <td>Atoms of \(\ge\) 2 elements</td>
-        <td>Elements and/or compounds</td>
-      </tr>
-      <tr>
-        <td>Ratio of components</td>
-        <td>N/A</td>
-        <td>Fixed ratio</td>
-        <td>Variable ratio</td>
-      </tr>
-      <tr>
-        <td>Bonding</td>
-        <td>—</td>
-        <td>Chemical bonds</td>
-        <td>No chemical bonds</td>
-      </tr>
-      <tr>
-        <td>Separation</td>
-        <td>Not possible</td>
-        <td>Chemical methods</td>
-        <td>Physical methods</td>
-      </tr>
-      <tr>
-        <td>Examples</td>
-        <td>\(\ce{O2}\), \(\ce{Na}\)</td>
-        <td>\(\ce{NaCl}\), \(\ce{H2O}\)</td>
-        <td>Air, seawater</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>6. Physical Separation Techniques</h2>
-
-  <h3>6.1 Filtration</h3>
-  <p><strong>Principle:</strong> Separates an insoluble solid from a liquid using a porous barrier; liquid passes as the <em>filtrate</em>, solid remains as the <em>residue</em>.</p>
-  <p><strong>Examples:</strong> sand from water; coffee grounds from brew.</p>
-  <p><strong>Notes:</strong> Does not remove dissolved solutes; particle size must exceed pore size.</p>
-
-  <h3>6.2 Evaporation to Dryness</h3>
-  <p><strong>Principle:</strong> Removes solvent by heating, leaving the solute; vapor is not collected.</p>
-  <p><strong>Examples:</strong> obtaining salt from seawater.</p>
-  <p><strong>Notes:</strong> Solvent is lost; heat‑sensitive solutes may decompose.</p>
-
-  <h3>6.3 Simple Distillation</h3>
-  <p><strong>Principle:</strong> Separates liquids (or a liquid from a dissolved solid) by differences in boiling point; the more volatile component is collected as the <em>distillate</em>.</p>
-  <p><strong>Examples:</strong> purifying water from a salt solution.</p>
-  <p><strong>Notes:</strong> Works best when boiling points differ by about \( \ge 50\,^\circ\mathrm{C} \); not suitable for azeotropes/complex mixtures.</p>
-
-  <h2>7. Practice Problems</h2>
-  <ol>
-    <li>
-      Classify each as an <strong>element</strong>, <strong>compound</strong>, or <strong>mixture</strong>. For mixtures, indicate homogeneous or heterogeneous:
-      <ol type="a">
-        <li>Mercury (\(\ce{Hg}\))</li>
-        <li>Table sugar (\(\ce{C12H22O11}\))</li>
-        <li>Orange juice with pulp</li>
-        <li>Air</li>
-        <li>Brass (Cu–Zn alloy)</li>
-      </ol>
-    </li>
-    <li>
-      Explain why water (\(\ce{H2O}\)) is a compound rather than a mixture of hydrogen and oxygen (reference fixed composition and bonding).
-    </li>
-    <li>
-      Choose a separation method and justify:
-      <ol type="a">
-        <li>Sand from seawater</li>
-        <li>Recovering copper(II) sulfate from its aqueous solution</li>
-        <li>Ethanol from water (bp \(78\,^\circ\mathrm{C}\) vs. \(100\,^\circ\mathrm{C}\))</li>
-      </ol>
-    </li>
-    <li>
-      During filtration, the filtrate is cloudy. Give two likely causes and fixes related to technique or apparatus.
-    </li>
-    <li>
-      Compare “evaporation to dryness” vs. “crystallization” for recovering dissolved solids in terms of purity and crystal habit.
-    </li>
-  </ol>
-
-  <div class="muted">
-    Tip: You can write temperatures as \(100\,^\circ\mathrm{C}\) or with the macro \(\SI{100}{\celsius}\) (macro provided above).
-  </div>
+  <h2>Example with \(\ce{}\)</h2>
+  <p>Water is written as \(\ce{H2O}\), carbon dioxide as \(\ce{CO2}\), and oxygen gas as \(\ce{O2}\).</p>
 </main>
 </body>
 </html>
