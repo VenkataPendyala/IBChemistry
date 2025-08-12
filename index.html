@@ -117,13 +117,13 @@
       border-top: 1px solid var(--border);
       color: var(--muted); font-size: .95rem;
     }
+    .muted { color: var(--muted); }
   </style>
 </head>
 <body>
 <main>
   <h1>IB Chemistry — Lecture Notes</h1>
 
-  <!-- Intro panel -->
   <div class="intro">
     <p><strong>Hi!</strong> I'm a high school student from Bellevue, Washington here to spread my knowledge.</p>
     <p>I’m interested in applications of <strong>artificial intelligence</strong> in use-cases ranging from physics and astronomy to everyday situations.</p>
@@ -136,71 +136,18 @@
     </div>
   </div>
 
-  <!-- IB Chemistry (collapsible) -->
+  <!-- IB Chemistry (collapsible, auto-filled below by JS) -->
   <section class="panel collapsible" id="ib-chemistry">
     <button class="panel-header" aria-expanded="true" aria-controls="ib-body">
       <div class="inner">
         <span class="caret">▸</span>
         <h2 class="title">IB Chemistry</h2>
       </div>
-      <span class="badge">Syllabus Units • SL/HL</span>
+      <span class="badge">Auto-generated from repo</span>
     </button>
     <div class="body" id="ib-body">
-      <div class="panel-body">
-
-        <!-- Structure 1 (collapsible) -->
-        <section class="subpanel collapsible" id="structure-1">
-          <button class="subpanel-header" aria-expanded="true" aria-controls="s1-body">
-            <div class="inner">
-              <span class="caret">▸</span>
-              <h3 class="title">Structure 1 — Particulate Nature of Matter</h3>
-            </div>
-            <span class="badge">1.1</span>
-          </button>
-          <div class="body" id="s1-body">
-            <div class="subpanel-body">
-              <p style="margin-bottom:8px;">
-                Foundations of matter at the particle level: elements, compounds, and mixtures; kinetic molecular theory;
-                temperature in Kelvin as average kinetic energy; and changes of state.
-              </p>
-
-              <div class="links">
-                <a href="structure1/lec111.html" class="card">
-                  <h4>1.1.1 — Classification of Matter</h4>
-                  <p>Elements, compounds, mixtures, and physical separation techniques with examples.</p>
-                </a>
-
-                <a href="structure1/lec112.html" class="card">
-                  <h4>1.1.2 — Kinetic Molecular Theory</h4>
-                  <p>Particle motion, states of matter, changes of state, and correct state symbols.</p>
-                </a>
-
-                <a href="structure1/lec113.html" class="card">
-                  <h4>1.1.3 — Temperature & Kelvin</h4>
-                  <p>Kelvin vs. Celsius, average kinetic energy, heating/cooling curves, conversions.</p>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- /Structure 1 -->
-
-        <!-- Future structures placeholder -->
-        <section class="subpanel collapsible" id="structure-2">
-          <button class="subpanel-header" aria-expanded="false" aria-controls="s2-body">
-            <div class="inner">
-              <span class="caret">▸</span>
-              <h3 class="title">Structure 2 — (Coming Soon)</h3>
-            </div>
-            <span class="badge">1.2</span>
-          </button>
-          <div class="body" id="s2-body">
-            <div class="subpanel-body">
-              <p>New lessons will appear here as they’re published.</p>
-            </div>
-          </div>
-        </section>
-
+      <div class="panel-body" id="structures-container">
+        <p class="muted" id="loading">Loading structures…</p>
       </div>
     </div>
   </section>
@@ -211,15 +158,17 @@
 </main>
 
 <script>
-/* Simple, accessible collapsible helper with smooth height animation */
-(function() {
-  const DURATION = 220; // keep in sync with --speed
-  const curve = 'cubic-bezier(.2,.8,.2,1)';
+/* ====== CONFIG: set these to your public GitHub repo ====== */
+const OWNER  = 'YOUR_GITHUB_USERNAME';
+const REPO   = 'YOUR_REPO_NAME';
+const BRANCH = 'main'; // or 'master'
 
+/* ====== Collapsible helper (same as before) ====== */
+(function initCollapsibles() {
+  const DURATION = 220, curve = 'cubic-bezier(.2,.8,.2,1)';
   function setExpanded(btn, content, expand) {
-    // Measure for animation
     if (expand) {
-      content.style.display = 'block';           // ensure measurable
+      content.style.display = 'block';
       const h = content.scrollHeight + 'px';
       content.style.height = '0px';
       requestAnimationFrame(() => {
@@ -229,15 +178,13 @@
       btn.setAttribute('aria-expanded', 'true');
     } else {
       const h = content.scrollHeight + 'px';
-      content.style.height = h;                  // set current height
+      content.style.height = h;
       requestAnimationFrame(() => {
         content.style.transition = `height ${DURATION}ms ${curve}`;
         content.style.height = '0px';
       });
       btn.setAttribute('aria-expanded', 'false');
     }
-
-    // After animation, tidy inline styles
     setTimeout(() => {
       content.style.transition = '';
       if (btn.getAttribute('aria-expanded') === 'true') {
@@ -247,31 +194,172 @@
       }
     }, DURATION + 30);
   }
-
-  // Initialize all collapsibles
   document.querySelectorAll('.collapsible').forEach(section => {
     const header = section.querySelector('button[aria-controls]');
-    const bodyId = header.getAttribute('aria-controls');
-    const body = document.getElementById(bodyId);
-
-    // Start state from aria-expanded
+    const body = document.getElementById(header.getAttribute('aria-controls'));
     const expanded = header.getAttribute('aria-expanded') === 'true';
-    if (expanded) {
-      body.style.display = 'block';
-      body.style.height = 'auto';
-    } else {
-      body.style.display = 'none';
-      body.style.height = '0px';
-    }
-
-    // Click to toggle
+    if (expanded) { body.style.display='block'; body.style.height='auto'; }
+    else { body.style.display='none'; body.style.height='0px'; }
     header.addEventListener('click', () => {
       const isOpen = header.getAttribute('aria-expanded') === 'true';
       setExpanded(header, body, !isOpen);
     });
-
-    // Keyboard support (Enter/Space already work on <button>)
   });
+})();
+
+/* ====== Auto-discovery via GitHub API ======
+   - Lists directories in repo root matching /^structure\d+$/
+   - For each structureN, lists .html files inside
+   - Tries to fetch <h1> or <title> from each to use as label
+   - Builds nested collapsible subpanels
+================================================ */
+const API_ROOT = `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
+const RAW_ROOT = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}`;
+
+async function ghList(path='') {
+  const url = path ? `${API_ROOT}/${encodeURIComponent(path)}` : API_ROOT;
+  const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' }});
+  if (!res.ok) throw new Error(`GitHub API error ${res.status}`);
+  return res.json(); // array of {name, path, type, download_url, ...}
+}
+
+async function fetchTitleFor(path) {
+  try {
+    const url = `${RAW_ROOT}/${path}`;
+    const txt = await (await fetch(url)).text();
+    // Try <h1> first, then <title>
+    const h1 = txt.match(/<h1[^>]*>([^<]+)<\/h1>/i);
+    if (h1 && h1[1]) return h1[1].trim();
+    const t = txt.match(/<title[^>]*>([^<]+)<\/title>/i);
+    if (t && t[1]) return t[1].trim();
+  } catch (_) {}
+  // Fallback: prettify filename
+  const fname = path.split('/').pop();
+  return fname.replace(/\.html?$/i,'').replace(/[_-]+/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function structureNumber(name) {
+  const m = name.match(/^structure(\d+)$/i);
+  return m ? parseInt(m[1],10) : null;
+}
+
+function createSubpanel({ number, lectures }) {
+  const subId = `structure-${number}`;
+  const header =
+    `<button class="subpanel-header" aria-expanded="${number===1?'true':'false'}" aria-controls="s${number}-body">
+       <div class="inner">
+         <span class="caret">▸</span>
+         <h3 class="title">Structure ${number}</h3>
+       </div>
+       <span class="badge">1.${number}</span>
+     </button>`;
+  const cards = lectures.map(l =>
+    `<a href="${l.href}" class="card">
+       <h4>${l.title}</h4>
+       <p class="muted">${l.description || ''}</p>
+     </a>`
+  ).join('');
+  const body =
+    `<div class="body" id="s${number}-body">
+       <div class="subpanel-body">
+         <div class="links">${cards || '<p class="muted">No lectures found yet.</p>'}</div>
+       </div>
+     </div>`;
+  const wrapper = document.createElement('section');
+  wrapper.className = 'subpanel collapsible';
+  wrapper.id = subId;
+  wrapper.innerHTML = header + body;
+  return wrapper;
+}
+
+(async function buildIndex() {
+  const container = document.getElementById('structures-container');
+  const loading = document.getElementById('loading');
+  try {
+    const root = await ghList('');
+    const structures = root
+      .filter(it => it.type === 'dir' && /^structure\d+$/i.test(it.name))
+      .map(it => ({ name: it.name, n: structureNumber(it.name) }))
+      .filter(it => it.n !== null)
+      .sort((a,b) => a.n - b.n);
+
+    if (structures.length === 0) {
+      loading.textContent = 'No structure folders (structure1, structure2, …) found.';
+      return;
+    }
+
+    loading.remove();
+
+    for (const s of structures) {
+      const items = await ghList(s.name);
+      const htmls = items.filter(it =>
+        it.type === 'file' && /\.html?$/i.test(it.name) && it.name.toLowerCase() !== 'index.html'
+      );
+
+      const lectures = [];
+      for (const f of htmls) {
+        const path = f.path; // e.g., structure1/lec111.html
+        const title = await fetchTitleFor(path);
+        // Lightweight description heuristics (optional)
+        let description = '';
+        if (/lec111/i.test(f.name)) description = 'Classification of matter, mixtures, separation methods.';
+        else if (/lec112/i.test(f.name)) description = 'Kinetic molecular theory, states, and state symbols.';
+        else if (/lec113/i.test(f.name)) description = 'Kelvin, temperature as average kinetic energy, conversions.';
+
+        lectures.push({ href: path, title, description });
+      }
+
+      const panel = createSubpanel({ number: s.n, lectures });
+      container.appendChild(panel);
+    }
+
+    // Activate collapsibles we just injected
+    document.querySelectorAll('.collapsible').forEach(section => {
+      const header = section.querySelector('button[aria-controls]');
+      const body = document.getElementById(header.getAttribute('aria-controls'));
+      const expanded = header.getAttribute('aria-expanded') === 'true';
+      if (expanded) { body.style.display='block'; body.style.height='auto'; }
+      else { body.style.display='none'; body.style.height='0px'; }
+      header.addEventListener('click', () => {
+        const isOpen = header.getAttribute('aria-expanded') === 'true';
+        // reuse the toggler from earlier scope
+        const DURATION = 220, curve = 'cubic-bezier(.2,.8,.2,1)';
+        function setExpanded(btn, content, expand) {
+          if (expand) {
+            content.style.display = 'block';
+            const h = content.scrollHeight + 'px';
+            content.style.height = '0px';
+            requestAnimationFrame(() => {
+              content.style.transition = `height ${DURATION}ms ${curve}`;
+              content.style.height = h;
+            });
+            btn.setAttribute('aria-expanded', 'true');
+          } else {
+            const h = content.scrollHeight + 'px';
+            content.style.height = h;
+            requestAnimationFrame(() => {
+              content.style.transition = `height ${DURATION}ms ${curve}`;
+              content.style.height = '0px';
+            });
+            btn.setAttribute('aria-expanded', 'false');
+          }
+          setTimeout(() => {
+            content.style.transition = '';
+            if (btn.getAttribute('aria-expanded') === 'true') {
+              content.style.height = 'auto';
+            } else {
+              content.style.display = 'none';
+            }
+          }, DURATION + 30);
+        }
+        setExpanded(header, body, !isOpen);
+      });
+    });
+
+  } catch (err) {
+    console.error(err);
+    loading.textContent = 'Could not load from GitHub. Check repo is public and OWNER/REPO/BRANCH are set.';
+  }
 })();
 </script>
 </body>
