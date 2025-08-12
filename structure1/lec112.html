@@ -1,1 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IB Chemistry 1.1.2 — Kinetic Molecular Theory and States of Matter</title>
+
+  <!-- Computer Modern (LaTeX-like) text fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+
+  <!-- MathJax v3 with mhchem for \ce{} and light siunitx-like macros -->
+  <script>
+    window.MathJax = {
+      tex: {
+        packages: {'[+]': ['mhchem']},
+        macros: {
+          SI: ["{#1\\,\\mathrm{#2}}", 2],
+          celsius: "{^\\circ\\!\\mathrm{C}}"
+        }
+      },
+      loader: { load: ['[tex]/mhchem'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    /* Clean lecture-note style (Computer Modern + subtle UI) */
+    :root {
+      --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-bg:#e9f2fc;
+      --border:#e5e7eb; --table:#d7dbe2; --soft:#f8fafc; --accent:#0f766e;
+    }
+    html,body {margin:0; padding:0; background:#fff; color:var(--ink);}
+    body {
+      font-family: "Computer Modern Serif", "Latin Modern Roman", "Times New Roman", Times, serif;
+      font-size: 18px; line-height: 1.6;
+    }
+    main {max-width: 980px; margin: 40px auto; padding: 0 20px 84px;}
+    h1, h2, h3, h4 {font-family: "Computer Modern Serif", serif;}
+    h1 {font-weight: 700; margin: 0 0 6px;}
+    .byline {color: var(--muted); margin-bottom: 8px;}
+    hr {border:0; border-top:1px solid var(--border); margin: 12px 0 24px;}
+    h2 {margin: 28px 0 12px; font-weight: 700;}
+    h3 {margin: 18px 0 10px; font-weight: 650;}
+    p {margin: 0 0 12px;}
+    ul, ol {margin: 0 0 14px 22px;}
+    .box {
+      background: var(--blue-bg);
+      border: 1px solid rgba(43,108,176,.45);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+    }
+    .box h3 {margin: 0 0 6px; color: var(--blue);}
+    table {width:100%; border-collapse: collapse; margin: 8px 0 18px;}
+    th, td {padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top;}
+    thead th {border-bottom: 2px solid var(--table); font-weight: 650;}
+    .example { background:var(--soft); border:1px dashed var(--border); border-radius:10px; padding:10px 12px; margin:10px 0; }
+    .muted {color: var(--muted);}
+    .grid-2 {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;}
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin: 10px 0 16px;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>IB Chemistry 1.1.2: Kinetic Molecular Theory and States of Matter</h1>
+  <div class="byline">Venkata Pendyala</div>
+  <hr>
+
+  <h2>1. Understanding</h2>
+  <div class="box">
+    <h3>Kinetic Molecular Theory</h3>
+    <p>
+      The <strong>kinetic molecular theory</strong> (KMT) models the physical properties of matter in
+      different states (solids, liquids, gases) and explains changes of state. Matter is composed
+      of tiny particles (atoms, molecules, or ions) in constant motion; their behavior depends on
+      particle kinetic energy and the strength of intermolecular forces.
+    </p>
+  </div>
+  <p>
+    KMT accounts for macroscopic properties such as shape, volume, compressibility, diffusion,
+    and density, and it explains how energy transfer affects phase changes at the particle level.
+  </p>
+
+  <h2>2. Learning Outcomes</h2>
+
+  <h3>2.1 Distinguishing States of Matter</h3>
+  <p>
+    Solids, liquids, and gases differ in particle arrangement, motion, and the strength of
+    intermolecular forces.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Solid (s)</th>
+        <th>Liquid (l)</th>
+        <th>Gas (g)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Shape</td>
+        <td>Fixed</td>
+        <td>Takes container shape</td>
+        <td>Fills container</td>
+      </tr>
+      <tr>
+        <td>Volume</td>
+        <td>Fixed</td>
+        <td>Fixed</td>
+        <td>Variable</td>
+      </tr>
+      <tr>
+        <td>Particle arrangement</td>
+        <td>Closely packed, ordered</td>
+        <td>Close, random arrangement</td>
+        <td>Far apart, random</td>
+      </tr>
+      <tr>
+        <td>Particle motion</td>
+        <td>Vibrates in place</td>
+        <td>Slides past neighbors</td>
+        <td>Moves freely at high speed</td>
+      </tr>
+      <tr>
+        <td>Forces between particles</td>
+        <td>Strong</td>
+        <td>Moderate</td>
+        <td>Weak</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2.2 Using State Symbols in Chemical Equations</h3>
+  <p>State symbols follow the formula:</p>
+  <ul>
+    <li><strong>(s)</strong> — solid</li>
+    <li><strong>(l)</strong> — liquid</li>
+    <li><strong>(g)</strong> — gas</li>
+    <li><strong>(aq)</strong> — aqueous (dissolved in water)</li>
+  </ul>
+  <p><strong>Example:</strong> dissolution of sodium chloride</p>
+  <p>\(\ce{NaCl_{(s)} -> Na+_{(aq)} + Cl-_{(aq)}}\)</p>
+
+  <h2>3. Changes of State</h2>
+  <p>
+    Phase changes occur when energy (usually heat) is added or removed. During a change of state:
+  </p>
+  <ul>
+    <li>Temperature remains constant at the phase transition.</li>
+    <li>Energy goes into changing <em>potential energy</em> (overcoming/forming intermolecular forces),
+        not kinetic energy.</li>
+  </ul>
+
+  <h3>3.1 Names of Changes of State</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Change</th>
+        <th>From → To</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Melting</td>
+        <td>Solid → Liquid</td>
+        <td>Particles gain energy and overcome some intermolecular forces.</td>
+      </tr>
+      <tr>
+        <td>Freezing</td>
+        <td>Liquid → Solid</td>
+        <td>Particles lose energy and form a fixed, ordered structure.</td>
+      </tr>
+      <tr>
+        <td>Vaporization (Boiling)</td>
+        <td>Liquid → Gas</td>
+        <td>Rapid vapor formation throughout the liquid at the boiling point.</td>
+      </tr>
+      <tr>
+        <td>Evaporation</td>
+        <td>Liquid → Gas</td>
+        <td>Slow surface process below the boiling point.</td>
+      </tr>
+      <tr>
+        <td>Condensation</td>
+        <td>Gas → Liquid</td>
+        <td>Particles lose energy and form a closer, liquid structure.</td>
+      </tr>
+      <tr>
+        <td>Sublimation</td>
+        <td>Solid → Gas</td>
+        <td>Direct transition without becoming liquid.</td>
+      </tr>
+      <tr>
+        <td>Deposition</td>
+        <td>Gas → Solid</td>
+        <td>Direct transition without becoming liquid.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Additional Notes</h2>
+  <ul>
+    <li>KMT explains compressibility (gases compress most), diffusion rates (fastest in gases),
+        and relative densities (gases \(\ll\) liquids \(\lt\) solids).</li>
+    <li>During phase changes, <em>potential energy</em> changes while average kinetic energy—and thus temperature—stays constant.</li>
+    <li><strong>Physical vs. chemical changes:</strong> physical changes (e.g., melting ice) do not alter chemical identity;
+        chemical changes produce new substances with different compositions and properties.</li>
+  </ul>
+
+  <h2>5. Practice Problems</h2>
+  <ol>
+    <li>
+      For each, identify the state of matter and explain using particle arrangement and motion:
+      <ol type="a">
+        <li>Ice at \(\SI{0}{\celsius}\)</li>
+        <li>Steam at \(\SI{100}{\celsius}\)</li>
+        <li>Molten sodium</li>
+      </ol>
+    </li>
+    <li>
+      Write balanced equations with correct state symbols:
+      <ol type="a">
+        <li>Combustion of methane:<br/>
+          \(\ce{CH4 + 2O2 -> CO2 + 2H2O}\)
+        </li>
+        <li>Dissolution of potassium hydroxide in water:<br/>
+          \(\ce{KOH -> K+ + OH-}\)
+        </li>
+      </ol>
+    </li>
+    <li>
+      Explain why temperature remains constant during melting even as heat is applied.
+    </li>
+    <li>
+      A sample of dry ice \(\ce{(CO2_{(s)})}\) is left on a bench at room temperature. State the change of state and describe it via KMT.
+    </li>
+    <li>
+      Compare evaporation and boiling in terms of particle energy, location within the liquid, and temperature.
+    </li>
+  </ol>
+
+  <div class="muted">
+    Notation tips: use \(\ce{}\) for chemical species and \(\SI{}{}\) for units, e.g.,
+    \(\SI{100}{\celsius}\), \(\SI{1}{atm}\), \(\ce{H2O(l)}\), \(\ce{CO2(g)}\).
+  </div>
+</main>
+</body>
+</html>
 
