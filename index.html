@@ -1,317 +1,81 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IB Chemistry — Lecture Notes</title>
-
-  <!-- Computer Modern font -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
-
-  <style>
-    :root {
-      --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-ink:#1f4e87;
-      --blue-bg:#e9f2fc; --border:#e5e7eb; --soft:#f8fafc; --shadow:rgba(16,24,40,.08);
-      --accent:#0f766e; --accent-bg:#ecfdf5; --speed:220ms; --curve:cubic-bezier(.2,.8,.2,1);
-    }
-    html, body {
-      margin:0; padding:0; background:#fff; color:var(--ink);
-      font-family:"Computer Modern Serif","Latin Modern Roman",serif;
-      font-size:18px; line-height:1.6;
-    }
-    main { max-width: 1000px; margin: 40px auto; padding: 0 20px 80px; }
-    h1 { margin: 0 0 8px; font-weight: 700; }
-
-    /* Panels */
-    .panel, .subpanel {
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:linear-gradient(180deg,#fff,#fbfbfd);
-      box-shadow:0 6px 18px var(--shadow);
-      overflow:hidden;
-      margin-bottom:22px;
-    }
-    .subpanel {
-      border-radius:12px;
-      box-shadow:0 4px 12px var(--shadow);
-      background:#fff;
-    }
-
-    /* Headers as buttons (accessible) */
-    .panel-header, .subpanel-header {
-      padding:0; border:0; width:100%; text-align:left; cursor:pointer;
-      background:transparent; display:flex; align-items:center; justify-content:space-between;
-      border-bottom:1px solid var(--border);
-    }
-    .panel-header .inner, .subpanel-header .inner {
-      display:flex; align-items:center; gap:10px; padding:14px 18px;
-      background:var(--blue-bg);
-    }
-    .subpanel-header .inner { padding:12px 16px; background:#f3f7fe; }
-    .badge {
-      margin-right:14px;
-      display:inline-block; font-size:.9rem; border:1px solid var(--border);
-      border-radius:999px; padding:2px 10px; background:#fff; color:var(--muted);
-    }
-    .title { margin:0; color:var(--blue-ink); font-weight:700; }
-
-    /* Caret */
-    .caret {
-      display:inline-block; transform:rotate(0deg); transition:transform var(--speed) var(--curve);
-      font-size:1.1rem; color:var(--blue-ink);
-    }
-    [aria-expanded="true"] .caret { transform:rotate(90deg); }
-
-    /* Collapsible body (height animated) */
-    .body {
-      height:0; overflow:hidden;
-      transition:height var(--speed) var(--curve);
-      will-change:height;
-      background:#fff;
-    }
-    .panel-body { padding:16px 18px; }
-    .subpanel-body { padding:14px 16px; }
-
-    /* Intro + Contact */
-    .intro {
-      margin-bottom: 20px;
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-    }
-    .contact {
-      margin-top: 16px;
-      background: var(--accent-bg);
-      border: 1px solid #bbf7d0;
-      border-radius: 10px;
-      padding: 12px 14px;
-    }
-    .contact a { color: var(--accent); text-decoration: none; }
-    .contact a:hover { text-decoration: underline; }
-
-    /* Lecture cards */
-    .links {
-      display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px; margin-top: 8px;
-    }
-    .card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 14px;
-      text-decoration: none;
-      color: var(--ink);
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    }
-    .card:hover {
-      border-color: var(--blue);
-      box-shadow: 0 6px 18px var(--shadow);
-      transform: translateY(-2px);
-    }
-    .card h4 { margin: 0 0 4px; color: var(--blue-ink); font-weight: 700; }
-    .card p { margin: 0; color: var(--muted); }
-
-    /* Testimonials (horizontal row, no italics, bolded keywords) */
-    .quotes-row {
-      display:flex; gap:14px; align-items:stretch;
-      overflow-x:auto; padding-bottom:6px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .quotes-row::-webkit-scrollbar { height:10px; }
-    .quotes-row::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:999px; }
-    .quote {
-      min-width: 300px; max-width: 360px;
-      flex:0 0 auto; scroll-snap-align:start;
-      background:#fff; border:1px solid var(--border); border-radius:12px;
-      padding:12px 14px; box-shadow:0 4px 12px var(--shadow);
-    }
-    .quote p { margin:0; }
-    .quote footer { margin-top:8px; font-size:.95rem; color:var(--muted); }
-
-    footer {
-      margin-top: 36px; padding-top: 12px;
-      border-top: 1px solid var(--border);
-      color: var(--muted); font-size: .95rem;
-    }
-    .muted { color: var(--muted); }
-  </style>
-</head>
-<body>
-<main>
-  <h1>IB Chemistry — Lecture Notes</h1>
-
-  <div class="intro">
-    <p><strong>Hi!</strong> I'm a high school student from Bellevue, Washington here to spread my knowledge.</p>
-    <p>I’m interested in applications of <strong>artificial intelligence</strong> in use-cases ranging from physics and astronomy to everyday situations.</p>
-    <p>I love reading books, stargazing, and tutoring others on Schoolhouse! I've finished AP Chemistry (5), AP World History (5), and AP Pre-Calculus (5).</p>
-
-    <div class="contact">
-      <p><strong>Private Tutoring</strong> — For one-on-one sessions, email me at
-        <a href="mailto:siddhu.pendyala@outlook.com">siddhu.pendyala@outlook.com</a>.
-      </p>
+<!-- Inside the Learner Feedback section -->
+<section class="panel collapsible" id="learner-feedback">
+  <button class="panel-header" aria-expanded="true" aria-controls="feedback-body">
+    <div class="inner">
+      <span class="caret">▸</span>
+      <h2 class="title">What learners say</h2>
+    </div>
+    <span class="badge">Reviews</span>
+  </button>
+  <div class="body" id="feedback-body">
+    <div class="panel-body" style="position:relative;">
+      <!-- Chevron buttons -->
+      <button class="scroll-btn left" aria-label="Scroll left">‹</button>
+      <div class="quotes-row" id="quotes-row">
+        <figure class="quote">
+          <p>“Thank you so much for your lessons — your <strong>teaching style</strong> makes learning chemistry <strong>interactive</strong> and you <strong>clear up</strong> any questions I have. I’m really looking forward to future lessons — please don’t disappear!”</p>
+          <footer>— Student review</footer>
+        </figure>
+        <figure class="quote">
+          <p>“I learned so much from this lesson. It was <strong>very well explained</strong> and I look forward to <strong>future chemistry lessons</strong>. Thank you for helping me out!”</p>
+          <footer>— Student review</footer>
+        </figure>
+        <figure class="quote">
+          <p>“Thanks for the great session — you were <strong>very interactive</strong> and did <strong>not make me feel bad</strong> when I had questions.”</p>
+          <footer>— Student review</footer>
+        </figure>
+        <figure class="quote">
+          <p>“Thank you so much for the <strong>time</strong> and <strong>passion</strong> you gave while explaining. It helped me <strong>see flaws</strong> in my design and how I could <strong>improve</strong>!”</p>
+          <footer>— Student review</footer>
+        </figure>
+      </div>
+      <button class="scroll-btn right" aria-label="Scroll right">›</button>
     </div>
   </div>
+</section>
 
-  <!-- IB Chemistry (collapsible, auto-filled below by JS) -->
-  <section class="panel collapsible" id="ib-chemistry">
-    <button class="panel-header" aria-expanded="true" aria-controls="ib-body">
-      <div class="inner">
-        <span class="caret">▸</span>
-        <h2 class="title">IB Chemistry</h2>
-      </div>
-      <span class="badge">Auto-generated from repo</span>
-    </button>
-    <div class="body" id="ib-body">
-      <div class="panel-body" id="structures-container">
-        <p class="muted" id="loading">Loading structures…</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Learner Feedback (collapsible, BELOW lectures) -->
-  <section class="panel collapsible" id="learner-feedback">
-    <button class="panel-header" aria-expanded="true" aria-controls="feedback-body">
-      <div class="inner">
-        <span class="caret">▸</span>
-        <h2 class="title">What learners say</h2>
-      </div>
-      <span class="badge">Reviews</span>
-    </button>
-    <div class="body" id="feedback-body">
-      <div class="panel-body">
-        <div class="quotes-row">
-          <figure class="quote">
-            <p>“Thank you so much for your lessons — your <strong>teaching style</strong> makes learning chemistry <strong>interactive</strong> and you <strong>clear up</strong> any questions I have. I’m really looking forward to future lessons — please don’t disappear!”</p>
-            <footer>— Student review</footer>
-          </figure>
-          <figure class="quote">
-            <p>“I learned so much from this lesson. It was <strong>very well explained</strong> and I look forward to <strong>future chemistry lessons</strong>. Thank you for helping me out!”</p>
-            <footer>— Student review</footer>
-          </figure>
-          <figure class="quote">
-            <p>“Thanks for the great session — you were <strong>very interactive</strong> and did <strong>not make me feel bad</strong> when I had questions.”</p>
-            <footer>— Student review</footer>
-          </figure>
-          <figure class="quote">
-            <p>“Thank you so much for the <strong>time</strong> and <strong>passion</strong> you gave while explaining. It helped me <strong>see flaws</strong> in my design and how I could <strong>improve</strong>!”</p>
-            <footer>— Student review</footer>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 — Lecture notes authored by Venkata Pendyala
-  </footer>
-</main>
+<style>
+.scroll-btn {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,0.9);
+  border:1px solid var(--border);
+  border-radius:50%;
+  width:32px; height:32px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.scroll-btn.left { left:-12px; }
+.scroll-btn.right { right:-12px; }
+.panel-body:hover .scroll-btn {
+  opacity:1; pointer-events:auto;
+}
+.scroll-btn:hover {
+  background:var(--blue-bg);
+}
+</style>
 
 <script>
-const OWNER  = 'VenkataPendyala';
-const REPO   = 'IBChemistry';
-const BRANCH = 'main';
+(function() {
+  const row = document.getElementById('quotes-row');
+  const leftBtn = document.querySelector('#learner-feedback .scroll-btn.left');
+  const rightBtn = document.querySelector('#learner-feedback .scroll-btn.right');
 
-(function initCollapsibles() {
-  const DURATION = 220, curve = 'cubic-bezier(.2,.8,.2,1)';
-  function setExpanded(btn, content, expand) {
-    if (expand) {
-      content.style.display = 'block';
-      const h = content.scrollHeight + 'px';
-      content.style.height = '0px';
-      requestAnimationFrame(() => {
-        content.style.transition = `height ${DURATION}ms ${curve}`;
-        content.style.height = h;
-      });
-      btn.setAttribute('aria-expanded', 'true');
-    } else {
-      const h = content.scrollHeight + 'px';
-      content.style.height = h;
-      requestAnimationFrame(() => {
-        content.style.transition = `height ${DURATION}ms ${curve}`;
-        content.style.height = '0px';
-      });
-      btn.setAttribute('aria-expanded', 'false');
-    }
-    setTimeout(() => {
-      content.style.transition = '';
-      if (btn.getAttribute('aria-expanded') === 'true') {
-        content.style.height = 'auto';
-      } else {
-        content.style.display = 'none';
-      }
-    }, DURATION + 30);
+  function updateButtons() {
+    leftBtn.style.display = row.scrollLeft > 0 ? 'flex' : 'none';
+    rightBtn.style.display = row.scrollLeft + row.clientWidth < row.scrollWidth ? 'flex' : 'none';
   }
-  document.querySelectorAll('.collapsible').forEach(section => {
-    const header = section.querySelector('button[aria-controls]');
-    const body = document.getElementById(header.getAttribute('aria-controls'));
-    const expanded = header.getAttribute('aria-expanded') === 'true';
-    if (expanded) { body.style.display='block'; body.style.height='auto'; }
-    else { body.style.display='none'; body.style.height='0px'; }
-    header.addEventListener('click', () => {
-      const isOpen = header.getAttribute('aria-expanded') === 'true';
-      setExpanded(header, body, !isOpen);
-    });
+
+  leftBtn.addEventListener('click', () => {
+    row.scrollBy({ left: -300, behavior: 'smooth' });
   });
+  rightBtn.addEventListener('click', () => {
+    row.scrollBy({ left: 300, behavior: 'smooth' });
+  });
+
+  row.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
 })();
-
-/* ====== Auto-discovery via GitHub API ======
-   - Lists directories in repo root matching /^structure\d+$/
-   - For each structureN, lists .html files inside
-   - Tries to fetch <h1> or <title> from each to use as label
-   - Builds nested collapsible subpanels
-================================================ */
-const API_ROOT = `https://api.github.com/repos/${OWNER}/${REPO}/contents`;
-const RAW_ROOT = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}`;
-
-async function ghList(path='') {
-  const url = path ? `${API_ROOT}/${encodeURIComponent(path)}` : API_ROOT;
-  const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' }});
-  if (!res.ok) throw new Error(`GitHub API error ${res.status}`);
-  return res.json();
-}
-
-async function fetchTitleFor(path) {
-  try {
-    const url = `${RAW_ROOT}/${path}`;
-    const txt = await (await fetch(url)).text();
-    const h1 = txt.match(/<h1[^>]*>([^<]+)<\/h1>/i);
-    if (h1 && h1[1]) return h1[1].trim();
-    const t = txt.match(/<title[^>]*>([^<]+)<\/title>/i);
-    if (t && t[1]) return t[1].trim();
-  } catch (_) {}
-  const fname = path.split('/').pop();
-  return fname.replace(/\.html?$/i,'').replace(/[_-]+/g,' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
-function structureNumber(name) {
-  const m = name.match(/^structure(\d+)$/i);
-  return m ? parseInt(m[1],10) : null;
-}
-
-function createSubpanel({ number, lectures }) {
-  const subId = `structure-${number}`;
-  const header =
-    `<button class="subpanel-header" aria-expanded="${number===1?'true':'false'}" aria-controls="s${number}-body">
-       <div class="inner">
-         <span class="caret">▸</span>
-         <h3 class="title">Structure ${number}</h3>
-       </div>
-       <span class="badge">1.${number}</span>
-     </button>`;
-  const cards = lectures.map(l =>
-    `<a href="${l.href}" class="card">
-       <h4>${l.title}</h4>
-       <p class="muted">${l.description || ''}</p>
-     </a>`
-  ).join('');
-  const body =
-    `<div class="body" id="s${number}-body">
-       <div class="subpanel-body">
-         <div class="links">${cards || '<p class="muted">No lectures found yet.</p>'}</div>
-       </div>
-     </div>`;
-  const wrapper = document.createElement('section');
-  wrapper.className = 'subpanel collapsible';
-  wrapper.id = su
+</script>
