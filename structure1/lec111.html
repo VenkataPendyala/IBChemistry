@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IB Chemistry 1.1.1 — Classification of Matter</title>
 
-  <!-- MathJax v3 configured to support \ce{} (mhchem) and light siunitx-like macros -->
+  <!-- Computer Modern (LaTeX-like) text fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+
+  <!-- MathJax v3 with mhchem for \ce{} and light siunitx-like macros -->
   <script>
     window.MathJax = {
       tex: {
@@ -15,28 +18,30 @@
           celsius: "{^\\circ\\!\\mathrm{C}}"
         }
       },
-      loader: {
-        load: ['[tex]/mhchem']
-      },
+      loader: { load: ['[tex]/mhchem'] },
       svg: { fontCache: 'global' }
     };
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
   <style>
-    /* Clean lecture-note style */
+    /* Clean lecture-note style (Computer Modern + subtle UI) */
     :root {
       --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-bg:#e9f2fc;
-      --border:#e5e7eb; --table:#d7dbe2;
+      --border:#e5e7eb; --table:#d7dbe2; --soft:#f8fafc; --accent:#0f766e;
     }
     html,body {margin:0; padding:0; background:#fff; color:var(--ink);}
-    body {font-family: "Latin Modern Roman", "Times New Roman", Times, serif; line-height:1.55; font-size:18px;}
-    main {max-width: 900px; margin: 40px auto; padding: 0 20px 64px;}
+    body {
+      font-family: "Computer Modern Serif", "Latin Modern Roman", "Times New Roman", Times, serif;
+      font-size: 18px; line-height: 1.6;
+    }
+    main {max-width: 980px; margin: 40px auto; padding: 0 20px 84px;}
+    h1, h2, h3 {font-family: "Computer Modern Serif", serif;}
     h1 {font-weight: 700; margin: 0 0 6px;}
     .byline {color: var(--muted); margin-bottom: 8px;}
     hr {border:0; border-top:1px solid var(--border); margin: 12px 0 24px;}
-    h2 {margin: 28px 0 10px; font-weight: 700;}
-    h3 {margin: 18px 0 8px; font-weight: 650;}
+    h2 {margin: 28px 0 12px; font-weight: 700;}
+    h3 {margin: 18px 0 10px; font-weight: 650;}
     p {margin: 0 0 12px;}
     ul, ol {margin: 0 0 14px 22px;}
     .box {
@@ -47,17 +52,36 @@
       margin: 12px 0 16px;
     }
     .box h3 {margin: 0 0 6px; color: var(--blue);}
-    table {width:100%; border-collapse: collapse; margin: 8px 0 16px;}
+    table {width:100%; border-collapse: collapse; margin: 8px 0 18px;}
     th, td {padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top;}
     thead th {border-bottom: 2px solid var(--table); font-weight: 650;}
-    .example {
-      background:#f8fafc; border:1px dashed var(--border);
-      border-radius:10px; padding:10px 12px; margin:10px 0;
-    }
+    .example { background:var(--soft); border:1px dashed var(--border); border-radius:10px; padding:10px 12px; margin:10px 0; }
     .muted {color: var(--muted);}
-    /* Better spacing for nested lists */
+    .fig {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      margin: 12px 0 18px;
+    }
+    .fig img {width:100%; height:auto; display:block; border-radius: 8px;}
+    .fig figcaption {font-size: 0.95rem; color: var(--muted); margin-top: 8px;}
+    .keypoints {display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 10px 0 16px;}
+    .kp {background: var(--soft); border:1px solid var(--border); border-radius:10px; padding:10px 12px;}
     ol > li {margin: 6px 0;}
     ol ol {margin-top: 6px;}
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin: 10px 0 16px;
+    }
+    .pill {
+      display:inline-block; padding:2px 8px; border:1px solid var(--border);
+      border-radius:999px; font-size:.95rem; background:#fff;
+    }
+    .grid-2 {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;}
   </style>
 </head>
 <body>
@@ -66,18 +90,27 @@
   <div class="byline">Venkata Pendyala</div>
   <hr>
 
-  <h2>1. Overview</h2>
+  <h2>1) Overview</h2>
   <p>
-    Matter — anything that has mass and occupies space — is classified by composition into
-    <strong>elements</strong>, <strong>compounds</strong>, and <strong>mixtures</strong>.
-    This framework helps predict properties, behavior, and appropriate separation methods.
+    <strong>Matter</strong>—anything that has mass and occupies space—is classified by composition into
+    <em>elements</em>, <em>compounds</em>, and <em>mixtures</em>. This framework predicts properties,
+    behavior, and the appropriate <em>separation methods</em> when substances are combined.
   </p>
-  <p>
-    Modern classification grew from Dalton’s atomic theory and laws such as Lavoisier’s
-    conservation of mass and Proust’s law of definite proportions.
-  </p>
+  <div class="keypoints">
+    <div class="kp">
+      <strong>Foundations:</strong> Dalton’s atomic theory; Lavoisier’s conservation of mass; Proust’s law of
+      definite proportions; particulate nature of matter.
+    </div>
+    <div class="kp">
+      <strong>Key Distinctions:</strong> chemical bonding vs. physical mixing; fixed composition vs. variable
+      composition; chemical vs. physical separation.
+    </div>
+    <div class="kp">
+      <strong>Notation:</strong> Use \(\ce{}\) for chemical formulae; state symbols \((\mathrm{s}), (\mathrm{l}), (\mathrm{g}), (\mathrm{aq})\).
+    </div>
+  </div>
 
-  <h2>2. Elements</h2>
+  <h2>2) Elements</h2>
   <div class="box">
     <h3>Definition</h3>
     <p>
@@ -85,29 +118,55 @@
       cannot be chemically decomposed into simpler substances.
     </p>
   </div>
-  <p>
-    Each element has a unique atomic number (proton count) and a symbol (often Latin-derived).
-    Elements can appear as monoatomic gases (\(\ce{He}\)), diatomic molecules (\(\ce{O2}\), \(\ce{N2}\)),
-    or polyatomic forms (e.g., \(\ce{P4}\), \(\ce{S8}\)).
-  </p>
-  <p><strong>Examples:</strong> \(\ce{Fe}\) (iron), \(\ce{Au}\) (gold), \(\ce{He}\) (helium).</p>
+  <div class="grid-2">
+    <div>
+      <h3>Essential points</h3>
+      <ul>
+        <li><strong>Atomic number \(Z\)</strong> is unique (proton count); determines the element.</li>
+        <li>Natural forms vary: monoatomic gases (\(\ce{He}\)), diatomic molecules (\(\ce{H2}\), \(\ce{O2}\), \(\ce{N2}\)), and polyatomic allotropes (\(\ce{O3}\), \(\ce{P4}\), \(\ce{S8}\)).</li>
+        <li><strong>Isotopes:</strong> same \(Z\), different neutron number (e.g., \(\ce{^{12}C}\), \(\ce{^{13}C}\), \(\ce{^{14}C}\)). Chemical properties similar; physical properties (mass, density) differ.</li>
+        <li><strong>Allotropes:</strong> different structural forms of the same element (e.g., carbon as diamond, graphite, graphene).</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Examples</h3>
+      <ul>
+        <li>\(\ce{Fe}\) (iron), \(\ce{Au}\) (gold), \(\ce{Cu}\) (copper)</li>
+        <li>\(\ce{O2}\) (oxygen gas), \(\ce{N2}\) (nitrogen gas)</li>
+        <li>\(\ce{S8}\) (rhombic sulfur), \(\ce{P4}\) (white phosphorus)</li>
+      </ul>
+    </div>
+  </div>
 
-  <h2>3. Compounds</h2>
+  <h2>3) Compounds</h2>
   <div class="box">
     <h3>Definition</h3>
     <p>
-      A <strong>compound</strong> is a pure substance composed of atoms of two or more different
-      elements <em>chemically bonded</em> in a fixed ratio.
+      A <strong>compound</strong> is a pure substance composed of atoms of two or more different elements
+      <em>chemically bonded</em> in a fixed ratio.
     </p>
   </div>
-  <p>
-    Compounds possess properties distinct from their elements. Composition is constant
-    (law of definite proportions). Example: reactive sodium and toxic chlorine combine
-    \(1{:}1\) to form table salt \(\ce{NaCl}\).
-  </p>
-  <p><strong>Examples:</strong> \(\ce{H2O}\), \(\ce{NaCl}\), \(\ce{CO2}\).</p>
+  <div class="grid-2">
+    <div>
+      <h3>Key ideas</h3>
+      <ul>
+        <li><strong>Fixed composition:</strong> law of definite proportions. \(\ce{H2O}\) is always hydrogen and oxygen in a \(2{:}1\) atomic ratio.</li>
+        <li><strong>New properties:</strong> emergent behavior distinct from constituent elements (e.g., \(\ce{Na}\) + \(\ce{Cl2}\) \(\to\) \(\ce{NaCl}\)).</li>
+        <li><strong>Bonding types:</strong> ionic (e.g., \(\ce{NaCl}\)), covalent molecular (e.g., \(\ce{CO2}\), \(\ce{C6H12O6}\)), covalent network (e.g., \(\ce{SiO2}\)), metallic (in elemental metals/alloys).</li>
+        <li><strong>Formulas:</strong> empirical vs. molecular; formula unit for ionic lattices.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Examples</h3>
+      <ul>
+        <li>\(\ce{H2O}\), \(\ce{CO2}\), \(\ce{NH3}\)</li>
+        <li>\(\ce{NaCl}\), \(\ce{CaCO3}\)</li>
+        <li>\(\ce{SiO2}\) (quartz: network covalent)</li>
+      </ul>
+    </div>
+  </div>
 
-  <h2>4. Mixtures</h2>
+  <h2>4) Mixtures</h2>
   <div class="box">
     <h3>Definition</h3>
     <p>
@@ -115,14 +174,25 @@
       with no fixed ratio and no chemical bonding between components.
     </p>
   </div>
-  <p>
-    Components retain their properties and can be separated by <em>physical methods</em>.
-    Mixtures may be <strong>homogeneous</strong> (uniform; e.g., air, saltwater, brass)
-    or <strong>heterogeneous</strong> (non-uniform; e.g., granite, sand + water).
-  </p>
-  <p><strong>Examples:</strong> air, seawater, oil and water.</p>
+  <div class="grid-2">
+    <div>
+      <h3>Classes of mixtures</h3>
+      <ul>
+        <li><strong>Homogeneous</strong> (solutions): uniform at the particle level; e.g., air (solution of gases), saline \(\ce{NaCl(aq)}\), brass (solid solution of \(\ce{Cu}\) and \(\ce{Zn}\)).</li>
+        <li><strong>Heterogeneous:</strong> visibly non-uniform; e.g., granite, oil + water, sand + water.</li>
+        <li><strong>Colloids & suspensions:</strong> intermediate particle sizes; Tyndall effect often observed for colloids.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Separation consequences</h3>
+      <ul>
+        <li>Components retain properties → use <em>physical</em> methods (filtration, distillation, evaporation, crystallization, chromatography, decantation, centrifugation, magnetic separation).</li>
+        <li>Composition is <em>variable</em>: properties (boiling point range, density) vary with proportions.</li>
+      </ul>
+    </div>
+  </div>
 
-  <h2>5. Comparative Summary</h2>
+  <h2>5) Comparative Summary</h2>
   <table>
     <thead>
       <tr>
@@ -141,21 +211,21 @@
       </tr>
       <tr>
         <td>Ratio of components</td>
-        <td>N/A</td>
+        <td>—</td>
         <td>Fixed ratio</td>
         <td>Variable ratio</td>
       </tr>
       <tr>
-        <td>Bonding</td>
+        <td>Bonding between components</td>
         <td>—</td>
         <td>Chemical bonds</td>
-        <td>No chemical bonds</td>
+        <td>No chemical bonds (only physical mixing)</td>
       </tr>
       <tr>
         <td>Separation</td>
-        <td>Not possible</td>
-        <td>Chemical methods</td>
-        <td>Physical methods</td>
+        <td>Not applicable</td>
+        <td>Chemical methods required</td>
+        <td>Physical methods sufficient</td>
       </tr>
       <tr>
         <td>Examples</td>
@@ -166,56 +236,136 @@
     </tbody>
   </table>
 
-  <h2>6. Physical Separation Techniques</h2>
+  <h2>6) Physical Separation Techniques</h2>
 
   <h3>6.1 Filtration</h3>
-  <p><strong>Principle:</strong> Separates an insoluble solid from a liquid using a porous barrier; liquid passes as the <em>filtrate</em>, solid remains as the <em>residue</em>.</p>
-  <p><strong>Examples:</strong> sand from water; coffee grounds from brew.</p>
-  <p><strong>Notes:</strong> Does not remove dissolved solutes; particle size must exceed pore size.</p>
+  <figure class="fig">
+    <img src="https://chem.libretexts.org/@api/deki/files/404365/clipboard_ea2ec76be18d6e96955d2ff17462e13cd.png?revision=1"
+         alt="Diagram of gravity filtration setup with funnel, filter paper, and flask." />
+    <figcaption>Gravity filtration: insoluble solid (residue) separated from liquid (filtrate) using a porous barrier.</figcaption>
+  </figure>
+  <p><strong>Principle:</strong> Separates an insoluble solid from a liquid via a porous medium; liquid passes as the <em>filtrate</em>, solid remains as the <em>residue</em>.</p>
+  <div class="grid-2">
+    <div>
+      <h4>When to use</h4>
+      <ul>
+        <li>Solid is insoluble at the working temperature.</li>
+        <li>Particles are larger than pore size of the filter medium.</li>
+        <li>Goal: remove suspended solids (clarify) or collect the solid.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Procedure (gravity)</h4>
+      <ol>
+        <li>Fold filter paper (cone) and seat in funnel; wet with solvent to seal.</li>
+        <li>Pour mixture along a glass rod to avoid splashing and channeling.</li>
+        <li>Rinse residue with small portions of solvent to improve recovery.</li>
+      </ol>
+    </div>
+  </div>
+  <p><strong>Notes:</strong> Does not remove <em>dissolved</em> solutes; for fine particles or slow flow, use vacuum (Büchner) filtration.</p>
+  <div class="callout"><strong>Troubleshooting:</strong> Cloudy filtrate → filter pores too large, paper torn, or decanting too quickly; refit paper, use finer grade, or refilter.</div>
 
-  <h3>6.2 Evaporation to Dryness</h3>
-  <p><strong>Principle:</strong> Removes solvent by heating, leaving the solute; vapor is not collected.</p>
-  <p><strong>Examples:</strong> obtaining salt from seawater.</p>
-  <p><strong>Notes:</strong> Solvent is lost; heat-sensitive solutes may decompose.</p>
+  <h3>6.2 Simple Distillation</h3>
+  <figure class="fig">
+    <img src="https://lh5.googleusercontent.com/iJ2cXJ-AeAW1Ku5EN4SfmJyKDz26BRi9EaMWaHMwY5KxX-d_x8u1SO2wfS6NBPeBqvSmDUQcZF75EE-xrSRmfVukZYyZYeQb1hxD9dnWTVIEOQ6RMNG1M96w6BZycT9QYBn9GEyU=w1200-h630-p-k-no-nu"
+         alt="Photograph/diagram of a simple distillation apparatus with condenser and collection flask." />
+    <figcaption>Simple distillation: separates components by boiling point; the more volatile component is collected as distillate.</figcaption>
+  </figure>
+  <p><strong>Principle:</strong> Differences in volatility (boiling point) drive separation. Vapor enriched in the more volatile component condenses and is collected.</p>
+  <div class="grid-2">
+    <div>
+      <h4>Use cases</h4>
+      <ul>
+        <li>Liquid + nonvolatile solute (e.g., \(\ce{NaCl(aq)}\) → water distillate).</li>
+        <li>Two miscible liquids with sufficiently different boiling points (\(\gtrsim \SI{50}{\celsius}\)).</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Limitations</h4>
+      <ul>
+        <li>Poor resolution when boiling points are close; use <em>fractional distillation</em>.</li>
+        <li>Azeotropes (e.g., ethanol–water at \(\approx \SI{95}{\%}\) \(\ce{C2H5OH}\)) cannot be separated to purity by simple distillation.</li>
+      </ul>
+    </div>
+  </div>
+  <p><strong>Safety/technique:</strong> Use boiling chips or stir bars; monitor temperature at the head of the column; never distill to dryness.</p>
 
-  <h3>6.3 Simple Distillation</h3>
-  <p><strong>Principle:</strong> Separates liquids (or a liquid from a dissolved solid) by differences in boiling point; the more volatile component is collected as the <em>distillate</em>.</p>
-  <p><strong>Examples:</strong> purifying water from a salt solution.</p>
-  <p><strong>Notes:</strong> Works best when boiling points differ by about \( \ge \SI{50}{\celsius} \); not suitable for azeotropes/complex mixtures.</p>
+  <h3>6.3 Evaporation to Dryness</h3>
+  <figure class="fig">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu7JdsMEY9xRM36bR9A9TV2lTHaZbdYRv2p1jTlEqbkdeNh-mEW7a3xKy_iPyLiVTZIeU&usqp=CAU"
+         alt="Evaporation setup showing a dish or beaker with solution heated until solvent evaporates." />
+    <figcaption>Evaporation: solvent is removed (lost) to leave the solute; no condensation/collection of vapor.</figcaption>
+  </figure>
+  <p><strong>Principle:</strong> Solvent is vaporized by heating; solute remains. No attempt is made to collect the solvent vapor.</p>
+  <div class="grid-2">
+    <div>
+      <h4>When to use</h4>
+      <ul>
+        <li>Recovering a <em>nonvolatile</em> solute from solution (e.g., salt from seawater).</li>
+        <li>Pre-concentrating solutions prior to crystallization.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Considerations</h4>
+      <ul>
+        <li>Solvent is lost; choose distillation if solvent recovery is desired.</li>
+        <li>Heat-sensitive solutes may decompose—prefer gentle heating or reduced pressure.</li>
+      </ul>
+    </div>
+  </div>
 
-  <h2>7. Practice Problems</h2>
+  <h2>7) Worked Examples</h2>
+  <div class="example">
+    <p><strong>Example A — Is water a compound?</strong><br/>
+    Water is \(\ce{H2O}\) with a fixed \(2{:}1\) atomic ratio (by moles) and specific bonding geometry. A mixture of \(\ce{H2}\) and \(\ce{O2}\) would have variable proportions and no chemical bonds between them → <em>water is a compound</em>, not a mixture.</p>
+  </div>
+  <div class="example">
+    <p><strong>Example B — Choose a separation:</strong></p>
+    <ol>
+      <li><em>Sand from seawater:</em> Filtration (insoluble solid from liquid). Rinse residue with small amounts of water to maximize recovery.</li>
+      <li><em>\(\ce{CuSO4(aq)}\) to solid \(\ce{CuSO4}\):</em> Evaporation to dryness (fast, less pure) or better, <em>crystallization</em> with slow cooling for higher purity and larger crystals.</li>
+      <li><em>Ethanol (\(\SI{78}{\celsius}\)) from water (\(\SI{100}{\celsius}\)):</em> Simple distillation works in principle; fractional distillation gives sharper separation.</li>
+    </ol>
+  </div>
+
+  <h2>8) Practice Problems (Qualitative & Quantitative)</h2>
   <ol>
     <li>
       Classify each as an <strong>element</strong>, <strong>compound</strong>, or <strong>mixture</strong>. For mixtures, indicate homogeneous or heterogeneous:
       <ol type="a">
-        <li>Mercury (\(\ce{Hg}\))</li>
-        <li>Table sugar (\(\ce{C12H22O11}\))</li>
+        <li>Mercury (\(\ce{Hg(l)}\))</li>
+        <li>Table sugar (\(\ce{C12H22O11(s)}\))</li>
         <li>Orange juice with pulp</li>
         <li>Air</li>
-        <li>Brass (Cu–Zn alloy)</li>
+        <li>Brass (Cu–Zn)</li>
       </ol>
     </li>
     <li>
-      Explain why water (\(\ce{H2O}\)) is a compound rather than a mixture of hydrogen and oxygen (reference fixed composition and bonding).
+      Explain why \(\ce{H2O}\) is a compound but seawater is a mixture, referencing fixed composition, bonding, and separation method.
     </li>
     <li>
-      Choose a separation method and justify:
+      Select the best method and justify briefly:
       <ol type="a">
-        <li>Sand from seawater</li>
-        <li>Recovering copper(II) sulfate from its aqueous solution</li>
-        <li>Ethanol from water (bp \(78\,^\circ\mathrm{C}\) vs. \(100\,^\circ\mathrm{C}\))</li>
+        <li>Silica sand from river water</li>
+        <li>\(\ce{KNO3(aq)}\) to recover solid \(\ce{KNO3}\)</li>
+        <li>Hexane (\(\mathrm{bp}\approx \SI{69}{\celsius}\)) from toluene (\(\mathrm{bp}\approx \SI{111}{\celsius}\))</li>
       </ol>
     </li>
     <li>
-      During filtration, the filtrate is cloudy. Give two likely causes and fixes related to technique or apparatus.
+      A cloudy filtrate is obtained when filtering a clay–water mixture. Give two likely causes and a remedy for each.
     </li>
     <li>
-      Compare “evaporation to dryness” vs. “crystallization” for recovering dissolved solids in terms of purity and crystal habit.
+      Contrast <em>evaporation to dryness</em> and <em>crystallization</em> in terms of expected purity, yield, and crystal habit.
+    </li>
+    <li>
+      In a simple distillation of \(\ce{NaCl(aq)}\), the thermometer reads \(\SI{99}{\celsius}\)–\(\SI{101}{\celsius}\). Explain the reading and identify the expected composition of the distillate and residue.
     </li>
   </ol>
 
   <div class="muted">
-    Tip: You can write temperatures as \(100\,^\circ\mathrm{C}\) or with the macro \(\SI{100}{\celsius}\) (macro provided above).
+    Tip: You can write temperatures as \(100\,^\circ\mathrm{C}\) or with the macro \(\SI{100}{\celsius}\).
+    Chemical states: \(\ce{NaCl(aq)}\), \(\ce{CO2(g)}\), \(\ce{H2O(l)}\), \(\ce{Fe(s)}\).
   </div>
 </main>
 </body>
