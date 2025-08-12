@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IB Chemistry 1.1.3 — Temperature, Kelvin, and Changes of State</title>
+
+  <!-- Computer Modern (LaTeX-like) text fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+
+  <!-- MathJax v3 with mhchem for \ce{} and light siunitx-like macros -->
+  <script>
+    window.MathJax = {
+      tex: {
+        packages: {'[+]': ['mhchem']},
+        macros: {
+          SI: ["{#1\\,\\mathrm{#2}}", 2],
+          celsius: "{^\\circ\\!\\mathrm{C}}"
+        }
+      },
+      loader: { load: ['[tex]/mhchem'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    /* Clean lecture-note style (Computer Modern + subtle UI) */
+    :root {
+      --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-bg:#e9f2fc;
+      --border:#e5e7eb; --table:#d7dbe2; --soft:#f8fafc; --accent:#0f766e;
+    }
+    html,body {margin:0; padding:0; background:#fff; color:var(--ink);}
+    body {
+      font-family: "Computer Modern Serif", "Latin Modern Roman", "Times New Roman", Times, serif;
+      font-size: 18px; line-height: 1.6;
+    }
+    main {max-width: 980px; margin: 40px auto; padding: 0 20px 84px;}
+    h1, h2, h3, h4 {font-family: "Computer Modern Serif", serif;}
+    h1 {font-weight: 700; margin: 0 0 6px;}
+    .byline {color: var(--muted); margin-bottom: 8px;}
+    hr {border:0; border-top:1px solid var(--border); margin: 12px 0 24px;}
+    h2 {margin: 28px 0 12px; font-weight: 700;}
+    h3 {margin: 18px 0 10px; font-weight: 650;}
+    p {margin: 0 0 12px;}
+    ul, ol {margin: 0 0 14px 22px;}
+    .box {
+      background: var(--blue-bg);
+      border: 1px solid rgba(43,108,176,.45);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+    }
+    .box h3 {margin: 0 0 6px; color: var(--blue);}
+    table {width:100%; border-collapse: collapse; margin: 8px 0 18px;}
+    th, td {padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top;}
+    thead th {border-bottom: 2px solid var(--table); font-weight: 650;}
+    .example { background:var(--soft); border:1px dashed var(--border); border-radius:10px; padding:10px 12px; margin:10px 0; }
+    .muted {color: var(--muted);}
+    .grid-2 {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;}
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin: 10px 0 16px;
+    }
+    .nav {margin-top: 28px;}
+    .nav a {
+      margin-right: 12px; text-decoration: none; border:1px solid var(--border);
+      padding: 6px 10px; border-radius: 8px; background:#fff; color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>IB Chemistry 1.1.3 — Temperature, Kelvin, and Changes of State</h1>
+  <div class="byline">Venkata Pendyala</div>
+  <hr>
+
+  <h2>1) Big Idea</h2>
+  <div class="box">
+    <h3>Temperature and Particle Motion</h3>
+    <p>
+      The absolute temperature \(T\) in kelvin (\(\mathrm{K}\)) measures the <em>average kinetic energy</em> of particles in a substance.
+      In microscopic terms, higher \(T\) means particles move faster (on average); lower \(T\) means they move more slowly.
+      For an ideal gas, the mean translational kinetic energy per particle is
+      \[
+        \langle E_k \rangle = \tfrac{3}{2}\,k_\mathrm{B}\,T,
+      \]
+      where \(k_\mathrm{B}\) is the Boltzmann constant. Per mole, this becomes \(\tfrac{3}{2}RT\) with the gas constant \(R\).
+    </p>
+  </div>
+
+  <h2>2) Why Kelvin?</h2>
+  <p>
+    The kelvin is the SI unit of temperature. It uses an absolute zero at which, in the idealized model, particles have
+    <em>minimum possible</em> kinetic energy. The scale increments are identical to the Celsius degree: a change of
+    \(\SI{1}{\celsius}\) equals a change of \(\SI{1}{K}\). The relationship is linear:
+  </p>
+  <p style="margin-left:12px;">
+    \(\displaystyle T(\mathrm{K}) = t(\mathrm{^\circ C}) + 273.15\) &nbsp; and &nbsp;
+    \(\displaystyle t(\mathrm{^\circ C}) = T(\mathrm{K}) - 273.15\).
+  </p>
+
+  <h3>2.1 A short history</h3>
+  <p>
+    Early thermometry (Fahrenheit, Celsius) was anchored to convenient reference points (freezing/boiling of water,
+    brine mixtures) and instrument behavior (liquid-in-glass expansion). In the 19th century, William Thomson (Lord Kelvin)
+    argued for an <em>absolute</em> scale grounded in physics rather than arbitrary points. With the rise of kinetic theory
+    (Clausius, Maxwell, Boltzmann), temperature became tied to particle motion and energy. Absolute zero (\(T=0\,\mathrm{K}\))
+    marks the theoretical limit where thermal motion is minimized (not “stopped” in the quantum sense, but at the lowest
+    energy state allowed).
+  </p>
+
+  <h2>3) Observable Changes During Changes of State</h2>
+  <p>
+    As substances are heated or cooled, we observe macroscopic changes (temperature readings, state, volume, and other physical properties).
+    The particle model connects these observations to energy at the microscopic level.
+  </p>
+
+  <h3>3.1 Heating and cooling curves</h3>
+  <p>
+    In a typical heating curve (substance heated at a steady rate):
+  </p>
+  <ul>
+    <li><strong>Within a single phase</strong> (solid only, liquid only, gas only): the temperature rises as heat increases the
+        <em>average kinetic energy</em> of particles. On a graph of \(T\) vs time, this appears as a sloped line.</li>
+    <li><strong>During a phase change</strong> (melting, boiling): the temperature stays <em>constant</em> while heat goes into
+        changing <em>potential energy</em>—rearranging particles against intermolecular forces. On the graph, this appears as a
+        horizontal plateau. The substance absorbs (or releases) energy without a temperature change until the phase transition is complete.</li>
+  </ul>
+  <div class="callout">
+    <strong>Key distinction:</strong> Temperature reflects <em>average kinetic energy</em>. During phase changes, added or removed energy
+    changes <em>potential energy</em> (particle separations/arrangements), not the temperature.
+  </div>
+
+  <h3>3.2 What you can see and measure</h3>
+  <ul>
+    <li><strong>Temperature plateaus:</strong> at the melting point and boiling point for a pure substance at fixed pressure.</li>
+    <li><strong>State changes:</strong> solid \(\leftrightarrow\) liquid (melting/freezing), liquid \(\leftrightarrow\) gas (boiling/condensation),
+        solid \(\leftrightarrow\) gas (sublimation/deposition). The identity of particles (\(\ce{H2O}\), \(\ce{CO2}\), etc.) remains unchanged—these are physical changes.</li>
+    <li><strong>Other properties:</strong> density decreases on heating (typically), viscosity of liquids tends to drop with temperature,
+        vapor pressure rises with temperature.</li>
+  </ul>
+
+  <h2>4) Celsius–Kelvin Conversion (and why it matters)</h2>
+  <p>
+    For chemistry calculations involving temperature in proportional relationships (gas laws, kinetic models), use kelvin.
+    This prevents nonsensical results (e.g., doubling \(\SI{10}{\celsius}\) is not physically meaningful, but doubling \(\SI{283.15}{K}\) is a clear ratio).
+  </p>
+  <div class="grid-2">
+    <div class="example">
+      <p><strong>Quick conversions</strong></p>
+      <ul>
+        <li>\(\SI{25}{\celsius} \; \to\; 25 + 273.15 = \SI{298.15}{K}\)</li>
+        <li>\(\SI{-20}{\celsius} \; \to\; -20 + 273.15 = \SI{253.15}{K}\)</li>
+        <li>\(\SI{373.15}{K} \; \to\; 373.15 - 273.15 = \SI{100}{\celsius}\)</li>
+      </ul>
+    </div>
+    <div class="example">
+      <p><strong>Common pitfalls</strong></p>
+      <ul>
+        <li>Using Celsius in ideal gas law or kinetic energy formulas—always convert to kelvin.</li>
+        <li>Confusing <em>difference</em> vs <em>absolute value</em>: a change of \(\SI{10}{\celsius}\) equals a change of \(\SI{10}{K}\),
+            but \(\SI{10}{\celsius}\) is not equal to \(\SI{10}{K}\) as absolute temperatures.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>5) Microscopic View: Kinetic Energy and Temperature</h2>
+  <p>
+    In gases (well modeled as ideal at low pressure and moderate temperature), particles move freely and rapidly. The Maxwell–Boltzmann
+    distribution describes a spread of speeds at any given \(T\); “temperature” corresponds to the distribution’s overall scale (average kinetic energy).
+    In condensed phases, motion includes vibrations (solids) and vibrations + translations/rotations (liquids), but the central idea remains:
+    higher \(T\) \(\Rightarrow\) higher average kinetic energy.
+  </p>
+  <div class="callout">
+    <strong>Remember:</strong> Temperature is not “heat content.” Heat is energy in transit due to temperature difference; internal energy includes
+    both kinetic and potential contributions; temperature connects most directly to the <em>average kinetic</em> part.
+  </div>
+
+  <h2>6) Worked Examples</h2>
+
+  <div class="example">
+    <p><strong>Example A — Identifying what changes during boiling</strong></p>
+    <p>
+      Pure water at \(\SI{1}{atm}\) is heated from \(\SI{20}{\celsius}\) to boiling. Once boiling begins, the thermometer reads \(\SI{100}{\celsius}\)
+      and stays there until all liquid has vaporized. Why? Because the supplied energy is used to separate molecules (increase potential energy)
+      rather than speed them up; the average kinetic energy—and thus the temperature—remains constant during the phase change.
+    </p>
+  </div>
+
+  <div class="example">
+    <p><strong>Example B — Choosing the correct temperature scale</strong></p>
+    <p>
+      A gas sample’s volume is proportional to \(T\) (at constant pressure and amount). If the gas is warmed from \(\SI{27}{\celsius}\) to
+      \(\SI{54}{\celsius}\), has \(T\) doubled? Converting: \(\SI{27}{\celsius}=\SI{300.15}{K}\), \(\SI{54}{\celsius}=\SI{327.15}{K}\).
+      The ratio is \(327.15/300.15 \approx 1.09\), <em>not</em> 2. So the volume increases by about 9%, not 100%.
+    </p>
+  </div>
+
+  <div class="example">
+    <p><strong>Example C — Celsius–Kelvin conversions in context</strong></p>
+    <p>
+      Ice and liquid water coexist at \(\SI{0}{\celsius}\) (\(\SI{273.15}{K}\)) at \(\SI{1}{atm}\). Steam and liquid water coexist at
+      \(\SI{100}{\celsius}\) (\(\SI{373.15}{K}\)). Note how an equal \(\SI{10}{\celsius}\) rise is an equal \(\SI{10}{K}\) rise—differences are the same in both scales.
+    </p>
+  </div>
+
+  <h2>7) Practice Problems</h2>
+  <ol>
+    <li>
+      Convert the following to kelvin and comment on whether each change in temperature would increase average particle kinetic energy:
+      <ol type="a">
+        <li>\(\SI{-15}{\celsius}\)</li>
+        <li>\(\SI{37}{\celsius}\)</li>
+        <li>\(\SI{0}{\celsius} \to \SI{25}{\celsius}\) (state whether kinetic energy increases, decreases, or is unchanged)</li>
+      </ol>
+    </li>
+    <li>
+      A pure substance is heated at constant pressure. The temperature-time graph shows two plateaus: one at \(\SI{0}{\celsius}\),
+      another at \(\SI{78}{\celsius}\). Identify each plateau and explain, in particle terms, why the temperature does not rise there.
+    </li>
+    <li>
+      A gas expands from \(\SI{293.15}{K}\) to \(\SI{313.15}{K}\) at constant pressure. By what factor would you expect its volume to change (ideal behavior)?
+      Why would using \(\SI{20}{\celsius}\) and \(\SI{40}{\celsius}\) directly give an incorrect factor?
+    </li>
+    <li>
+      In an experiment, a student records the temperature during the melting of a solid and notices small fluctuations around the melting point.
+      Give two sensible experimental reasons for these fluctuations and how to minimize them.
+    </li>
+    <li>
+      Distinguish clearly between “heat,” “temperature,” and “internal energy” for a sample of \(\ce{H2O}\) during condensation at \(\SI{100}{\celsius}\).
+    </li>
+  </ol>
+
+  <div class="muted">
+    Notes: Use \(\mathrm{K}\) (not “\(\mathrm{^\circ K}\)”). Differences are the same in \(\mathrm{K}\) and \(\mathrm{^\circ C}\), but absolute values must be in \(\mathrm{K}\) for
+    proportional gas/kinetic relations. Physical changes (melting, boiling) do not change chemical identity (\(\ce{H2O}\) remains \(\ce{H2O}\)).
+  </div>
+
+  <div class="nav">
+    <!-- Adjust paths to match your project structure -->
+    <a href="IBChemistry/index.html">Home</a>
+    <a href="lec112.html">Previous</a>
+    <a href="lec114.html">Next</a>
+  </div>
+</main>
+</body>
+</html>
