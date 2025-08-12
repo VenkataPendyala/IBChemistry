@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IB Chemistry 1.2.2 — Isotopes & Mass Spectra</title>
+
+  <!-- Computer Modern (LaTeX-like) text fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+
+  <!-- MathJax v3 with mhchem and light siunitx-like macros -->
+  <script>
+    window.MathJax = {
+      tex: {
+        packages: {'[+]': ['mhchem']},
+        macros: { SI: ["{#1\\,\\mathrm{#2}}",2], celsius:"{^\\circ\\!\\mathrm{C}}" }
+      },
+      loader: { load: ['[tex]/mhchem'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-bg:#e9f2fc;
+      --border:#e5e7eb; --table:#d7dbe2; --soft:#f8fafc; --accent:#0f766e;
+      --shadow: rgba(16,24,40,.08);
+    }
+    html,body {margin:0; padding:0; background:#fff; color:var(--ink);}
+    body {
+      font-family: "Computer Modern Serif","Latin Modern Roman","Times New Roman",Times,serif;
+      font-size: 18px; line-height: 1.6;
+    }
+    main {max-width: 1000px; margin: 40px auto; padding: 0 20px 84px;}
+    h1,h2,h3,h4 {font-family:"Computer Modern Serif",serif;}
+    h1 {font-weight:700; margin:0 0 6px;}
+    .byline {color: var(--muted); margin-bottom: 8px;}
+    hr {border:0; border-top:1px solid var(--border); margin: 12px 0 24px;}
+    h2 {margin: 28px 0 12px; font-weight: 700;}
+    h3 {margin: 18px 0 10px; font-weight: 650;}
+    p {margin: 0 0 12px;}
+    ul, ol {margin: 0 0 14px 22px;}
+
+    .box {
+      background: var(--blue-bg);
+      border: 1px solid rgba(43,108,176,.45);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+    }
+    .box h3 {margin:0 0 6px; color: var(--blue);}
+
+    table {width:100%; border-collapse: collapse; margin: 8px 0 18px;}
+    th, td {padding: 10px 12px; border-bottom: 1px solid var(--border); text-align:left; vertical-align:top;}
+    thead th {border-bottom: 2px solid var(--table); font-weight:650;}
+
+    .example { background:var(--soft); border:1px dashed var(--border); border-radius:10px; padding:10px 12px; margin:10px 0; }
+    .muted {color: var(--muted);}
+    .grid-2 {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;}
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      padding: 10px 12px; border-radius: 6px; margin: 10px 0 16px;
+    }
+
+    .fig {
+      background:#fff; border:1px solid var(--border); border-radius:12px;
+      padding:12px; margin: 12px 0 18px; box-shadow:0 6px 18px var(--shadow);
+    }
+    .fig img { display:block; width:100%; height:auto; border-radius:8px; }
+    .fig figcaption {font-size:.95rem; color:var(--muted); margin-top:8px; text-align:center;}
+    .fig.narrow { max-width: 720px; margin-left:auto; margin-right:auto; }
+
+    .nav {margin-top:28px;}
+    .nav a {margin-right: 12px; text-decoration:none; border:1px solid var(--border);
+      padding:6px 10px; border-radius:8px; background:#fff; color:var(--ink);}
+  </style>
+</head>
+<body>
+<main>
+  <h1>IB Chemistry 1.2.2 — Isotopes & Mass Spectra</h1>
+  <div class="byline">Venkata Pendyala</div>
+  <hr>
+
+  <h2>1) Understanding</h2>
+  <div class="box">
+    <h3>What are isotopes?</h3>
+    <p>
+      <strong>Isotopes</strong> are atoms of the <em>same element</em> (same atomic number \(Z\), hence same number of protons) that differ in their number of <strong>neutrons</strong>.
+      Therefore they share almost identical <em>chemical</em> behavior (same electron configuration when neutral/ionized similarly) but can have different <em>physical</em> properties (mass-dependent).
+      Examples: \(\ce{^{24}Mg}\), \(\ce{^{25}Mg}\), \(\ce{^{26}Mg}\); \(\ce{^{54}Fe}\), \(\ce{^{56}Fe}\), \(\ce{^{57}Fe}\), \(\ce{^{58}Fe}\).
+    </p>
+  </div>
+
+  <h2>2) Why relative atomic masses are non-integers</h2>
+  <p>
+    The value on the periodic table (the <em>relative atomic mass</em>, \(A_\mathrm{r}\)) is a <strong>weighted average</strong> of the masses of all naturally occurring isotopes:
+  </p>
+  <p class="example">
+    \[
+      A_\mathrm{r}(E) \;=\; \sum_i \left(\frac{\text{abundance}_i}{100}\right) \times (\text{isotopic mass})_i
+    \]
+  </p>
+  <p>
+    Because isotopes occur in different proportions, the average is rarely an integer. For magnesium, the natural mixture of \(\ce{^{24}Mg}\), \(\ce{^{25}Mg}\), \(\ce{^{26}Mg}\) yields \(A_\mathrm{r} \approx 24.3\).
+  </p>
+
+  <h2>3) Quick primer: mass spectrometry for isotopes</h2>
+  <p>
+    In a mass spectrometer, atoms/molecules are ionized and separated by mass-to-charge ratio \(m/z\). A typical isotope spectrum (for an element) shows several peaks at different \(m/z\) values corresponding to the different isotopes. The <em>peak heights</em> or <em>relative intensities</em> are proportional to their <strong>relative abundances</strong>.
+  </p>
+
+  <div class="grid-2">
+    <figure class="fig">
+      <img src="https://study.com/cimages/multimages/16/iron_ques3281762071740017653.png" alt="Mass spectrum of iron showing peaks for Fe isotopes">
+      <figcaption>Iron isotopes (illustrative): multiple peaks near \(m/z \approx 54,56,57,58\) correspond to \(\ce{^{54}Fe}\), \(\ce{^{56}Fe}\), \(\ce{^{57}Fe}\), \(\ce{^{58}Fe}\) with characteristic abundances.</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="https://jeolusa.s3.amazonaws.com/prodshots/AI/MS_Basics/Figure_03.png?AWSAccessKeyId=AKIAQJOI4KIAZPDULHNL&Expires=2145934800&Signature=Txb6crSVEBTEajwb0kz8l%2BVn%2BeY%3D" alt="Mass spectrum basics figure (JEOL)">
+      <figcaption>MS basics (illustrative): peak position gives \(m/z\); peak height/area relates to abundance. (Water spectrum here helps visualize interpretation, even though it’s a molecule.)</figcaption>
+    </figure>
+  </div>
+
+  <figure class="fig narrow">
+    <img src="https://wisc.pb.unizin.org/app/uploads/sites/293/2018/07/Mg_hard_MS_M2Q3.png" alt="Mass spectrum of magnesium with three isotope peaks at m/z 24, 25, 26">
+    <figcaption>Magnesium isotopes: clear peaks for \(\ce{^{24}Mg}\), \(\ce{^{25}Mg}\), \(\ce{^{26}Mg}\). From relative intensities you can compute percent abundance and \(A_\mathrm{r}\).</figcaption>
+  </figure>
+
+  <h2>4) Worked examples</h2>
+
+  <div class="example">
+    <p><strong>Example A — \(A_\mathrm{r}\) from isotope abundances (Mg).</strong></p>
+    <p>
+      Suppose a magnesium spectrum shows intensities proportional to 79.0 : 10.0 : 11.0 for \(\ce{^{24}Mg}\), \(\ce{^{25}Mg}\), \(\ce{^{26}Mg}\) respectively (these are illustrative, but close to real values).
+    </p>
+    <p>
+      \[
+      A_\mathrm{r}(\ce{Mg}) = 0.790\times 24 + 0.100\times 25 + 0.110\times 26
+      \]
+    </p>
+    <p>
+      \(= 18.96 + 2.50 + 2.86 = 24.32 \approx 24.3\)
+    </p>
+    <p class="muted">Note: If you are given raw peak heights, first convert them to percentages (divide each by the total and \(\times 100\)).</p>
+  </div>
+
+  <div class="example">
+    <p><strong>Example B — Determine unknown abundances given \(A_\mathrm{r}\) (2-isotope case).</strong></p>
+    <p>
+      Chlorine has two main isotopes: \(\ce{^{35}Cl}\) and \(\ce{^{37}Cl}\). If \(A_\mathrm{r}(\ce{Cl})=35.45\) and we assume only those two isotopes with mass numbers 35 and 37, find their abundances.
+    </p>
+    <p>
+      Let \(x\) = fraction of \(\ce{^{35}Cl}\), so \(1-x\) = fraction of \(\ce{^{37}Cl}\).
+      \[
+        35.45 = 35x + 37(1-x) = 37 - 2x \quad\Rightarrow\quad 2x = 37 - 35.45 = 1.55 \Rightarrow x = 0.775
+      \]
+      Therefore \(\ce{^{35}Cl}\) ≈ \(77.5\%\), \(\ce{^{37}Cl}\) ≈ \(22.5\%\).
+    </p>
+  </div>
+
+  <div class="example">
+    <p><strong>Example C — Three isotopes from relative peak heights (algebra set-up).</strong></p>
+    <p>
+      A sample of element \(E\) shows three isotopes with masses 24, 25, and 26. The relative peak heights are \(h_{24}:h_{25}:h_{26} = 79:10:11\).
+      Convert to fractions:
+      \[
+        f_{24}=\frac{79}{100},\quad f_{25}=\frac{10}{100},\quad f_{26}=\frac{11}{100}.
+      \]
+      Then
+      \[
+        A_\mathrm{r}(E)=24 f_{24}+25 f_{25}+26 f_{26}.
+      \]
+      Substitute and evaluate to find the average mass (as in Example A).
+    </p>
+  </div>
+
+  <h2>5) Differences in physical properties of isotopes</h2>
+  <p>
+    Because isotopes differ in mass, they can have small but measurable differences in <strong>physical</strong> properties. Chemical properties are essentially identical (same \(Z\), same valence electron configuration).
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Trend across isotopes</th>
+        <th>Notes/Consequences</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mass & density</td>
+        <td>Heavier isotope → slightly higher density</td>
+        <td>Used in isotope separation; affects diffusion rates (Graham’s law).</td>
+      </tr>
+      <tr>
+        <td>Diffusion rate (gases)</td>
+        <td>Lighter isotope → faster diffusion</td>
+        <td>Basis for enrichment methods; measurable in effusion experiments.</td>
+      </tr>
+      <tr>
+        <td>Melting/boiling point</td>
+        <td>Small shifts</td>
+        <td>Isotope effects are usually minor but real (vibrational zero-point energy differences).</td>
+      </tr>
+      <tr>
+        <td>Bond vibrational frequency</td>
+        <td>Heavier isotopes vibrate at lower frequency</td>
+        <td>IR spectra shift slightly (e.g., \(\ce{C-H}\) vs. \(\ce{C-D}\)).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>6) How to read an isotope mass spectrum (element)</h2>
+  <ol>
+    <li><strong>Identify peaks:</strong> Each distinct \(m/z\) near the integer mass corresponds to a different isotope’s singly charged ion (usually \(z=+1\) → \(m/z \approx \text{mass}\)).</li>
+    <li><strong>Measure relative intensities:</strong> Read peak heights/areas and convert to fractions or percentages.</li>
+    <li><strong>Compute \(A_\mathrm{r}\):</strong> Use the weighted-average formula with isotopic masses.</li>
+    <li><strong>Check reasonableness:</strong> The final \(A_\mathrm{r}\) should lie between the lightest and heaviest isotope masses.</li>
+  </ol>
+
+  <h2>7) Practice Problems (Challenging)</h2>
+  <ol>
+    <li>
+      An element \(X\) has two isotopes of masses 64 and 66. Its mass spectrum shows peaks with relative heights 3:2 (for 64:66).
+      <ol type="a">
+        <li>Calculate the percent abundance of each isotope.</li>
+        <li>Compute \(A_\mathrm{r}(X)\).</li>
+      </ol>
+    </li>
+
+    <li>
+      The following simplified magnesium spectrum (masses 24, 25, 26) has relative intensities 78.6 : 10.1 : 11.3.
+      <ol type="a">
+        <li>Convert these intensities to fractional abundances.</li>
+        <li>Calculate \(A_\mathrm{r}(\ce{Mg})\) and compare to the periodic-table value \(\approx 24.3\).</li>
+      </ol>
+    </li>
+
+    <li>
+      Bromine has two main isotopes (\(\ce{^{79}Br}\) and \(\ce{^{81}Br}\)). A mass spectrum of molecular bromine, \(\ce{Br2}\), shows three major peaks at \(m/z \approx 158, 160, 162\).
+      <ol type="a">
+        <li>Explain the origin of these three peaks (combinatorics of isotope pairs).</li>
+        <li>If the central peak at 160 is the most intense, what does that imply about the relative abundances of \(\ce{^{79}Br}\) and \(\ce{^{81}Br}\)?</li>
+      </ol>
+    </li>
+
+    <li>
+      Element \(E\) has three isotopes with masses 10.01, 11.01, and 12.01 u. The mass spectrum gives relative intensities in the ratio 19 : 80 : 1 (respectively).
+      <ol type="a">
+        <li>Determine the percent abundance of each isotope.</li>
+        <li>Calculate \(A_\mathrm{r}(E)\).</li>
+      </ol>
+    </li>
+
+    <li>
+      A diatomic gas shows a parent peak at \(m/z=70\) and a second peak at \(m/z=72\). The 70 peak is roughly nine times higher than the 72 peak.
+      Assuming both atoms are the same element with two isotopes differing by 2 u, deduce the relative abundance of the heavier isotope. (Hint: consider all pairings in the molecule.)
+    </li>
+
+    <li>
+      Qualitatively predict how substitution of \(\ce{^2H}\) (deuterium) for \(\ce{^1H}\) in \(\ce{H2O}\) would affect:
+      <ol type="a">
+        <li>Diffusion rate of the vapor</li>
+        <li>Vibrational frequencies in IR spectra</li>
+        <li>Boiling point (very small effect, but in which direction?)</li>
+      </ol>
+    </li>
+  </ol>
+
+  <div class="nav">
+    <a href="../index.html">Home</a>
+    <a href="lec121.html">Prev</a>
+    <a href="lec123.html">Next</a>
+  </div>
+
+  <div class="muted">
+    Note: External images are hot-linked. For reliability, consider copying them into your repo’s <code>/assets</code> folder and updating the <code>src</code> paths.
+  </div>
+</main>
+</body>
+</html>
