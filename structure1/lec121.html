@@ -45,7 +45,8 @@
     .grid-2{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;}
 
     .fig{background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; margin:12px 0 18px; box-shadow:0 6px 18px var(--shadow);}
-    .figfigcaption{font-size:.95rem; color:var(--muted); margin-top:8px;}
+    .fig img{width:100%; height:auto; display:block; border-radius:8px;}
+    .fig figcaption{font-size:.95rem; color:var(--muted); margin-top:8px; text-align:center;}
 
     table{width:100%; border-collapse:collapse; margin:8px 0 18px;}
     th,td{padding:10px 12px; border-bottom:1px solid var(--border);}
@@ -71,15 +72,12 @@
     <p>Atoms contain a <em>positively charged, dense nucleus</em> composed of protons and neutrons (nucleons). Electrons, which are negatively charged and much less massive, occupy the space outside the nucleus.</p>
   </div>
 
+  <!-- Keep a single hero visual: Bohr atom animation -->
   <div class="grid-2">
     <figure class="fig">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Bohr_atom_animation.gif" alt="Animated Bohr model of atom" style="width:100%;height:auto;border-radius:8px;"/>
-      <figcaption class="muted">Bohr model animation depicting electrons transitioning between quantized orbits.</figcaption>
-    </figure>
-
-    <figure class="fig">
-      <img src="https://lh6.googleusercontent.com/proxy/nkLu5UJOuu_08_bw5Xi2eT0-84IntsuzvC-uhNg5WsxcyJjj_J0IV6u3QI4iCV5JbrFzqnqmOTtplkqt264hUiv46WYWnkpqD84eub7Yaa2-bp92" alt="Historic scientist conducting an experiment" style="width:100%;height:auto;border-radius:8px;"/>
-      <figcaption class="muted">Pictorial representation of early experiments exploring atomic structure.</figcaption>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Bohr_atom_animation.gif"
+           alt="Animated Bohr model of atom showing electrons in quantized orbits.">
+      <figcaption class="muted">Bohr model animation — electrons orbit a dense, positively charged nucleus of protons and neutrons.</figcaption>
     </figure>
   </div>
 
@@ -91,62 +89,97 @@
       <tr><th>Particle</th><th>Symbol</th><th>Relative Charge</th><th>Relative Mass</th><th>Location</th></tr>
     </thead>
     <tbody>
-      <tr><td>Proton</td><td>p</td><td>+1</td><td>≈1</td><td>nucleus</td></tr>
-      <tr><td>Neutron</td><td>n</td><td>0</td><td>≈1</td><td>nucleus</td></tr>
-      <tr><td>Electron</td><td>e⁻</td><td>-1</td><td>≈1/1836</td><td>outside nucleus</td></tr>
+      <tr><td>Proton</td><td>p</td><td>+1</td><td>≈1</td><td>Nucleus</td></tr>
+      <tr><td>Neutron</td><td>n</td><td>0</td><td>≈1</td><td>Nucleus</td></tr>
+      <tr><td>Electron</td><td>e⁻</td><td>−1</td><td>≈1/1836</td><td>Outside nucleus</td></tr>
     </tbody>
   </table>
 
   <h2>3) Nuclear Symbol & Counting Particles</h2>
-  <figure class="fig">
-    <svg viewBox="0 0 760 180" width="100%" height="auto" aria-label="Nuclear symbol layout">
-      <rect x="10" y="10" width="740" height="160" rx="12" ry="12" fill="#f8fafc" stroke="#e5e7eb"/>
-      <text x="120" y="100" font-size="48" fill="#1f2937">^A</text>
-      <text x="150" y="120" font-size="60" fill="#1f2937">Z</text>
-      <text x="210" y="120" font-size="64" fill="#1f2937">X</text>
-      <text x="275" y="70" font-size="40" fill="#1f2937">q</text>
-      <line x1="120" y1="130" x2="120" y2="150" stroke="#94a3b8"/>
-      <text x="120" y="168" font-size="14" fill="#475569" text-anchor="middle">A = p + n</text>
-      <line x1="150" y1="140" x2="150" y2="160" stroke="#94a3b8"/>
-      <text x="150" y="175" font-size="14" text-anchor="middle" fill="#475569">Z = p</text>
-      <line x1="220" y1="140" x2="220" y2="160" stroke="#94a3b8"/>
-      <text x="220" y="175" font-size="14" text-anchor="middle" fill="#475569">element</text>
-      <line x1="290" y1="85" x2="330" y2="85" stroke="#94a3b8"/>
-      <text x="340" y="90" font-size="14" fill="#475569">net charge</text>
-    </svg>
-    <figcaption class="muted">Nuclear symbol: \(\ce{^A_ZX^{q}}\) → p = Z, n = A − Z, e = Z − q.</figcaption>
+  <!-- REPLACED the SVG with your provided image, sized and centered -->
+  <figure class="fig" style="max-width: 520px; margin-left:auto; margin-right:auto;">
+    <img src="https://lh6.googleusercontent.com/proxy/nkLu5UJOuu_08_bw5Xi2eT0-84IntsuzvC-uhNg5WsxcyJjj_J0IV6u3QI4iCV5JbrFzqnqmOTtplkqt264hUiv46WYWnkpqD84eub7Yaa2-bp92"
+         alt="Nuclear symbol diagram illustrating mass number A (top), atomic number Z (bottom), element symbol X, and charge q.">
+    <figcaption class="muted">
+      Nuclear notation \(\ce{^{A}_{Z}X^{q}}\): \(p=Z\), \(n=A-Z\), \(e=Z-q\) (treat \(q\) as positive for cations and negative for anions).
+    </figcaption>
   </figure>
+
+  <div class="grid-2">
+    <div>
+      <h3>Atoms vs. Ions</h3>
+      <ul>
+        <li><strong>Neutral atom:</strong> \(e = p = Z\).</li>
+        <li><strong>Cation \(X^{q+}\):</strong> electrons <em>lost</em> → \(e = Z - q\).</li>
+        <li><strong>Anion \(X^{q-}\):</strong> electrons <em>gained</em> → \(e = Z + q\).</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Isotopes</h3>
+      <p>Same element (same \(Z\)) with different neutron number \(n\). Example: \(\ce{^{12}C}\), \(\ce{^{13}C}\), \(\ce{^{14}C}\) all have \(p=6\) but \(n=6,7,8\) respectively.</p>
+      <div class="callout"><strong>Exam tip:</strong> Always check that the symbol’s \(Z\) matches the element you wrote.</div>
+    </div>
+  </div>
 
   <h2>4) Worked Examples</h2>
   <div class="example">
-    <p><strong>Example A:</strong> For \(\ce{^56_26Fe^{3+}}\): p=26, n=30, e=23.</p>
+    <p><strong>Example A — Count particles in an ion.</strong> \(\ce{^{56}_{26}Fe^{3+}}\): \(p=26\); \(n=56-26=30\); \(e=26-3=23\).</p>
   </div>
   <div class="example">
-    <p><strong>Example B:</strong> Bromine anion with 36 e⁻ and 44 n. Br: Z=35, so A=79, charge = -1 → \(\ce{^{79}_{35}Br^-}\).</p>
+    <p><strong>Example B — Build the nuclear symbol.</strong> A bromine anion has 36 electrons and 44 neutrons. Br has \(Z=35\) → \(p=35\). If \(e=36\), charge \(=1-\). Neutrons \(n=44\) → \(A=79\). Symbol: \(\ce{^{79}_{35}Br^-}\).</p>
   </div>
 
-  <h2>5) Practice Problems</h2>
+  <h2>5) Practice Problems (Challenging)</h2>
   <ol>
-    <li><p>Find p, n, e for:</p>
+    <li>
+      For each species, determine \(p\), \(n\), and \(e\).
       <ol type="a">
-        <li>\(\ce{^64_29Cu}\)</li>
-        <li>\(\ce{^40_20Ca^{2+}}\)</li>
-        <li>\(\ce{^34_16S^{2-}}\)</li>
-        <li>\(\ce{^127_{53}I^-}\)</li>
+        <li>\(\ce{^{64}_{29}Cu}\)</li>
+        <li>\(\ce{^{40}_{20}Ca^{2+}}\)</li>
+        <li>\(\ce{^{34}_{16}S^{2-}}\)</li>
+        <li>\(\ce{^{127}_{53}I^-}\)</li>
       </ol>
     </li>
-    <li><p>Two isotopes X and Y of same element: X has p=35, n=44; Y has charge 2− and n=46. Identify symbols and electrons.</p></li>
-    <li><p>A Ni²⁺ ion has 28 e⁻ and A=62. Find Z and n.</p></li>
-    <li><p>Element E with 22 e⁻ and n=26, forms E³⁺. Find symbol and Z, A.</p></li>
-    <li><p>Titanium isotopes (47, 48, 49) average ≈24.3 u. Suggest plausible abundances.</p></li>
-    <li><p>Species \(\ce{^A_ZCl^{q-}}\) has e=18 and n=18. Find Z, A, q, and symbol.</p></li>
+    <li>
+      A neutral atom \(X\) has 35 protons and 44 neutrons. Another isotope \(Y\) of the same element has a \(2-\) charge and 46 neutrons.
+      <ol type="a">
+        <li>Write the nuclear symbol for \(X\).</li>
+        <li>Write the nuclear symbol for \(Y\).</li>
+        <li>How many electrons does \(Y\) have?</li>
+      </ol>
+    </li>
+    <li>
+      An ion has 28 electrons and is written as \(\ce{^{62}_{?}Ni^{2+}}\). Determine \(Z\), \(A\), and the neutron number \(n\).
+    </li>
+    <li>
+      An element \(E\) forms \(\ce{E^{3+}}\) with 22 electrons and has 26 neutrons. Determine:
+      <ol type="a">
+        <li>\(Z\) and the identity of \(E\)</li>
+        <li>Mass number \(A\)</li>
+        <li>Nuclear symbol</li>
+      </ol>
+    </li>
+    <li>
+      Two isotopes of titanium occur: \(\ce{^{47}Ti}\) (7.44%) and \(\ce{^{49}Ti}\) (5.41%). The remaining is \(\ce{^{48}Ti}\).
+      <ol type="a">
+        <li>Estimate the average mass using mass numbers.</li>
+        <li>Which isotope must be the most abundant? Explain.</li>
+      </ol>
+    </li>
+    <li>
+      A species is reported as \(\ce{^{A}_{Z}Cl^{q-}}\) with \(e=18\) and \(n=18\).
+      <ol type="a">
+        <li>Find \(Z\), \(q\), and \(A\).</li>
+        <li>Write the full symbol.</li>
+      </ol>
+    </li>
   </ol>
 
   <h2>6) Notes & Exam Tips</h2>
   <ul>
-    <li>A = p + n; Z = p; e depends on ionic charge.</li>
-    <li>For ions: cations lose e, anions gain e.</li>
-    <li>Electron mass is negligible in IB context.</li>
+    <li>\(A = p + n\); \(Z = p\); \(e\) depends on ionic charge.</li>
+    <li>Cations lose \(e^-\); anions gain \(e^-\).</li>
+    <li>Electron mass is negligible at IB precision; nuclear mass dominates.</li>
   </ul>
 
   <div class="nav">
