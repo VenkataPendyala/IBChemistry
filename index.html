@@ -112,6 +112,28 @@
     .card h4 { margin: 0 0 4px; color: var(--blue-ink); font-weight: 700; }
     .card p { margin: 0; color: var(--muted); }
 
+    /* Testimonials */
+    .quotes { 
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+      gap:14px; 
+    }
+    .quote {
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 14px;
+      box-shadow:0 4px 12px var(--shadow);
+    }
+    .quote blockquote { 
+      margin:0; 
+      font-style:italic; 
+    }
+    .quote footer {
+      margin-top:8px; 
+      font-size:.95rem; 
+      color:var(--muted);
+    }
+
     footer {
       margin-top: 36px; padding-top: 12px;
       border-top: 1px solid var(--border);
@@ -135,6 +157,47 @@
       </p>
     </div>
   </div>
+
+  <!-- Learner Feedback (collapsible) -->
+  <section class="panel collapsible" id="learner-feedback">
+    <button class="panel-header" aria-expanded="true" aria-controls="feedback-body">
+      <div class="inner">
+        <span class="caret">▸</span>
+        <h2 class="title">What learners say</h2>
+      </div>
+      <span class="badge">Reviews</span>
+    </button>
+    <div class="body" id="feedback-body">
+      <div class="panel-body">
+        <div class="quotes">
+          <figure class="quote">
+            <blockquote>
+              “Hi, I wanted to say thank you so much for your lessons, your teaching style makes learning chemistry so interactive and you clear up any questions I have. I'm really looking forward to all of the lessons this and next year — please don't disappear!!”
+            </blockquote>
+            <footer>— Student review</footer>
+          </figure>
+          <figure class="quote">
+            <blockquote>
+              “Hi I learned so much from this lesson, it was very well explained and I look forward to future chemistry lessons, thank you for helping me out!!”
+            </blockquote>
+            <footer>— Student review</footer>
+          </figure>
+          <figure class="quote">
+            <blockquote>
+              “Thanks for the great session, you were very interactive and did not make me feel bad when I had questions.”
+            </blockquote>
+            <footer>— Student review</footer>
+          </figure>
+          <figure class="quote">
+            <blockquote>
+              “Thank you so much for the time and passion that you gave me while explaining. It definitely helped me see the flaws in my design and how I could improve!”
+            </blockquote>
+            <footer>— Student review</footer>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- IB Chemistry (collapsible, auto-filled below by JS) -->
   <section class="panel collapsible" id="ib-chemistry">
@@ -320,7 +383,6 @@ function createSubpanel({ number, lectures }) {
       else { body.style.display='none'; body.style.height='0px'; }
       header.addEventListener('click', () => {
         const isOpen = header.getAttribute('aria-expanded') === 'true';
-        // reuse the toggler from earlier scope
         const DURATION = 220, curve = 'cubic-bezier(.2,.8,.2,1)';
         function setExpanded(btn, content, expand) {
           if (expand) {
