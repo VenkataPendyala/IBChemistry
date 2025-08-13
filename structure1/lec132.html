@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IB Chemistry 1.3.2 — Electronic Configuration & Orbital Theory</title>
+
+  <!-- Computer Modern (LaTeX-like) text fonts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+
+  <!-- MathJax v3 with mhchem and light siunitx-like macros -->
+  <script>
+    window.MathJax = {
+      tex: {
+        packages: {'[+]': ['mhchem']},
+        macros: { SI: ["{#1\\,\\mathrm{#2}}",2], celsius:"{^\\circ\\!\\mathrm{C}}"}
+      },
+      loader: { load: ['[tex]/mhchem'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --ink:#1b1f23; --muted:#61666c; --blue:#2b6cb0; --blue-bg:#e9f2fc;
+      --border:#e5e7eb; --table:#d7dbe2; --soft:#f8fafc; --accent:#0f766e;
+      --shadow: rgba(16,24,40,.08);
+    }
+    html,body {margin:0; padding:0; background:#fff; color:var(--ink);}
+    body {
+      font-family: "Computer Modern Serif","Latin Modern Roman","Times New Roman",Times,serif;
+      font-size: 18px; line-height: 1.6;
+    }
+    main {max-width: 1000px; margin: 40px auto; padding: 0 20px 84px;}
+    h1,h2,h3,h4 {font-family:"Computer Modern Serif",serif;}
+    h1 {font-weight:700; margin:0 0 6px;}
+    .byline {color: var(--muted); margin-bottom: 8px;}
+    hr {border:0; border-top:1px solid var(--border); margin: 12px 0 24px;}
+    h2 {margin: 28px 0 12px; font-weight: 700;}
+    h3 {margin: 18px 0 10px; font-weight: 650;}
+    p {margin: 0 0 12px;}
+    ul, ol {margin: 0 0 14px 22px;}
+
+    .box {
+      background: var(--blue-bg);
+      border: 1px solid rgba(43,108,176,.45);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 12px 0 16px;
+    }
+    .box h3 {margin:0 0 6px; color: var(--blue);}
+
+    table {width:100%; border-collapse: collapse; margin: 8px 0 18px;}
+    th, td {padding: 10px 12px; border-bottom: 1px solid var(--border); text-align:left; vertical-align:top;}
+    thead th {border-bottom: 2px solid var(--table); font-weight:650;}
+
+    .example { background:var(--soft); border:1px dashed var(--border); border-radius:10px; padding:10px 12px; margin:10px 0; }
+    .muted {color: var(--muted);}
+    .grid-2 {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;}
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: #ecfdf5;
+      padding: 10px 12px; border-radius: 6px; margin: 10px 0 16px;
+    }
+
+    .fig {
+      background:#fff; border:1px solid var(--border); border-radius:12px;
+      padding:12px; margin: 12px 0 18px; box-shadow:0 6px 18px var(--shadow);
+    }
+    .fig img, .fig svg { display:block; width:100%; height:auto; border-radius:8px; }
+    .fig figcaption {font-size:.95rem; color:var(--muted); margin-top:8px; text-align:center;}
+    .fig.narrow { max-width: 800px; margin-left:auto; margin-right:auto; }
+
+    .orbital {
+      display:inline-block; border:1px solid var(--border); border-radius:8px; padding:6px 8px; margin:2px 4px; background:#fff;
+    }
+    .nav {margin-top:28px;}
+    .nav a {margin-right: 12px; text-decoration:none; border:1px solid var(--border);
+      padding:6px 10px; border-radius:8px; background:#fff; color:var(--ink);}
+  </style>
+</head>
+<body>
+<main>
+  <h1>IB Chemistry 1.3.2 — Electronic Configuration & Orbital Theory</h1>
+  <div class="byline">Venkata Pendyala</div>
+  <hr>
+
+  <h2>1) Understanding: What an electronic configuration is</h2>
+  <div class="box">
+    <h3>Definition</h3>
+    <p>
+      An element’s <strong>electronic configuration</strong> specifies how its electrons are distributed among atomic orbitals (subshells \(s,p,d,f\)) in the lowest-energy arrangement (the <em>ground state</em>), unless otherwise noted. We write configurations as
+      \(\mathrm{1s^22s^22p^63s^23p^6\ldots}\) or using noble-gas core notation, e.g. \(\mathrm{[Ne]\,3s^23p^4}\).
+    </p>
+  </div>
+  <p>
+    Orbitals are grouped into subshells \(s\) (1 orbital), \(p\) (3), \(d\) (5), \(f\) (7); each orbital holds at most 2 electrons (opposite spins).
+  </p>
+
+  <h2>2) The three rules that determine ground-state configurations</h2>
+  <div class="grid-2">
+    <div class="box">
+      <h3>Aufbau Principle (Build-up)</h3>
+      <p>Electrons occupy the <strong>lowest-energy</strong> orbitals available first, following the general energy order:
+      \(\mathrm{1s}\) &rarr; \(\mathrm{2s}\) &rarr; \(\mathrm{2p}\) &rarr; \(\mathrm{3s}\) &rarr; \(\mathrm{3p}\) &rarr; \(\mathrm{4s}\) &rarr; \(\mathrm{3d}\) &rarr; \(\mathrm{4p}\) &rarr; \(\mathrm{5s}\) &rarr; \(\mathrm{4d}\) &rarr; \(\mathrm{5p}\) &rarr; \(\mathrm{6s}\) &rarr; \(\mathrm{4f}\) &rarr; \(\mathrm{5d}\) &rarr; \(\mathrm{6p}\) &rarr; \(\mathrm{7s}\) &rarr; \(\mathrm{5f}\) &rarr; \(\mathrm{6d}\) &rarr; \(\mathrm{7p}\).</p>
+    </div>
+    <div class="box">
+      <h3>Pauli Exclusion Principle</h3>
+      <p>No two electrons in an atom can have the same set of four quantum numbers. **Practically:** an orbital holds <strong>at most two electrons</strong>, and they must have <strong>opposite spins</strong> (often drawn as ↑↓).</p>
+    </div>
+  </div>
+  <div class="box">
+    <h3>Hund’s Rule (Maximum Multiplicity)</h3>
+    <p>Within a subshell (e.g., \(2p\) has 3 orbitals), electrons occupy <strong>empty orbitals singly</strong> with parallel spins before pairing. This minimizes electron–electron repulsion and lowers energy.</p>
+  </div>
+
+  <figure class="fig narrow">
+    <!-- Diagonal (n+l) style order chart as inline SVG for clarity -->
+    <svg viewBox="0 0 820 360" role="img" aria-label="Aufbau order diagram">
+      <rect x="0" y="0" width="820" height="360" rx="12" ry="12" fill="#f8fafc" stroke="#e5e7eb"/>
+      <g font-family="serif" font-size="18" fill="#1f2937">
+        <!-- Columns n -->
+        <text x="40" y="40">1s</text>
+        <text x="40" y="80">2s</text>
+        <text x="100" y="80">2p</text>
+        <text x="40" y="120">3s</text>
+        <text x="100" y="120">3p</text>
+        <text x="160" y="120">3d</text>
+        <text x="40" y="160">4s</text>
+        <text x="100" y="160">4p</text>
+        <text x="160" y="160">4d</text>
+        <text x="220" y="160">4f</text>
+        <text x="40" y="200">5s</text>
+        <text x="100" y="200">5p</text>
+        <text x="160" y="200">5d</text>
+        <text x="220" y="200">5f</text>
+        <text x="40" y="240">6s</text>
+        <text x="100" y="240">6p</text>
+        <text x="160" y="240">6d</text>
+        <text x="40" y="280">7s</text>
+        <text x="100" y="280">7p</text>
+
+        <!-- Diagonal arrows indicating order -->
+        <g stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)">
+          <line x1="58" y1="44" x2="58" y2="72"/>
+          <line x1="58" y1="84" x2="118" y2="84"/>
+          <line x1="118" y1="84" x2="118" y2="112"/>
+
+          <line x1="58" y1="124" x2="58" y2="152"/>
+          <line x1="118" y1="124" x2="118" y2="152"/>
+          <line x1="178" y1="124" x2="178" y2="152"/>
+
+          <line x1="58" y1="164" x2="58" y2="192"/>
+          <line x1="118" y1="164" x2="118" y2="192"/>
+          <line x1="178" y1="164" x2="178" y2="192"/>
+          <line x1="238" y1="164" x2="238" y2="192"/>
+
+          <line x1="58" y1="204" x2="58" y2="232"/>
+          <line x1="118" y1="204" x2="118" y2="232"/>
+          <line x1="178" y1="204" x2="178" y2="232"/>
+          <line x1="238" y1="204" x2="238" y2="232"/>
+
+          <line x1="58" y1="244" x2="58" y2="272"/>
+          <line x1="118" y1="244" x2="118" y2="272"/>
+          <line x1="178" y1="244" x2="178" y2="272"/>
+        </g>
+      </g>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+        </marker>
+      </defs>
+    </svg>
+    <figcaption>Aufbau/diagonal order guide. Remember: \(s\) (1 orbital → 2 e⁻), \(p\) (3 → 6), \(d\) (5 → 10), \(f\) (7 → 14).</figcaption>
+  </figure>
+
+  <h2>3) Capacities, subshells, and quantum-number map</h2>
+  <table>
+    <thead>
+      <tr><th>Subshell</th><th>Orbitals</th><th>Max e⁻</th><th>Typical n-labels</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>\(s\)</td><td>1</td><td>2</td><td>\(1s,2s,\ldots\)</td><td>Spherical; first to fill at each new principal level.</td></tr>
+      <tr><td>\(p\)</td><td>3</td><td>6</td><td>\(2p,3p,\ldots\)</td><td>Dumbbell shapes along axes; begin at \(n=2\).</td></tr>
+      <tr><td>\(d\)</td><td>5</td><td>10</td><td>\(3d,4d,\ldots\)</td><td>Begin at \(n=3\); for main-group periods, \(d\) is \(n-1\).</td></tr>
+      <tr><td>\(f\)</td><td>7</td><td>14</td><td>\(4f,5f\)</td><td>Begin at \(n=4\); for main-group periods, \(f\) is \(n-2\).</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4) Writing configurations: the bulletproof algorithm</h2>
+  <ol>
+    <li><strong>Count electrons:</strong> For a neutral atom, e⁻ = atomic number \(Z\). For ions, adjust by charge (add for anions, subtract for cations).</li>
+    <li><strong>Fill in Aufbau order</strong> (diagram above), respecting <strong>Pauli</strong> and <strong>Hund</strong>.</li>
+    <li><strong>Use noble-gas cores</strong> when helpful (e.g., \(\mathrm{[Ar]}\), \(\mathrm{[Kr]}\), \(\mathrm{[Xe]}\)).</li>
+    <li><strong>EXCEPTIONS:</strong> Watch the well-known \(d\)-subshell stabilizations (below); for cations of transition metals, <em>remove \(ns\) electrons before \((n-1)d\)</em>.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Ionization rule for transition metals:</strong> Although \(4s\) fills before \(3d\), upon ionization the \(4s\) electrons are removed <em>first</em> (they are higher in energy in the presence of \(3d\) electrons).
+  </div>
+
+  <h2>5) Orbital box notation (Hund + Pauli made visible)</h2>
+  <div class="example">
+    <p><strong>Example — Nitrogen \(\mathrm{Z=7}\):</strong> \(\mathrm{1s^22s^22p^3}\).</p>
+    <div>
+      <span class="orbital">1s: ↑↓</span>
+      <span class="orbital">2s: ↑↓</span>
+      <span class="orbital">2p: ↑  ↑  ↑</span>
+      <span class="muted">(&rarr; three unpaired e⁻, parallel spins)</span>
+    </div>
+  </div>
+
+  <h2>6) The classic exceptions (and why)</h2>
+  <p>
+    Some elements gain stability from <strong>half-filled</strong> (\(d^5\)) and <strong>filled</strong> (\(d^{10}\)) subshells due to exchange energy and symmetry. The most-tested:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Element</th><th>Expected (naïve) Aufbau</th><th>Actual ground state</th><th>Reason</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>\(\ce{Cr}\) (24)</td><td>\(\mathrm{[Ar]\,3d^4\,4s^2}\)</td><td><strong>\(\mathrm{[Ar]\,3d^5\,4s^1}\)</strong></td><td>Half-filled \(3d\) stabilization.</td></tr>
+      <tr><td>\(\ce{Cu}\) (29)</td><td>\(\mathrm{[Ar]\,3d^9\,4s^2}\)</td><td><strong>\(\mathrm{[Ar]\,3d^{10}\,4s^1}\)</strong></td><td>Filled \(3d\) stabilization.</td></tr>
+      <tr><td>\(\ce{Mo}\) (42)</td><td>\(\mathrm{[Kr]\,4d^4\,5s^2}\)</td><td><strong>\(\mathrm{[Kr]\,4d^5\,5s^1}\)</strong></td><td>Half-filled \(4d\) stabilization.</td></tr>
+      <tr><td>\(\ce{Ag}\) (47)</td><td>\(\mathrm{[Kr]\,4d^9\,5s^2}\)</td><td><strong>\(\mathrm{[Kr]\,4d^{10}\,5s^1}\)</strong></td><td>Filled \(4d\) stabilization.</td></tr>
+      <tr><td>\(\ce{Au}\) (79)</td><td>\(\mathrm{[Xe]\,4f^{14}\,5d^9\,6s^2}\)</td><td><strong>\(\mathrm{[Xe]\,4f^{14}\,5d^{10}\,6s^1}\)</strong></td><td>Filled \(5d\) stabilization (relativistic effects contribute).</td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Note: Many heavier atoms may have subtle deviations; the above are the canonical IB-level cases.</p>
+
+  <h2>7) Noble-gas notation & period mapping (n, n−1, n−2)</h2>
+  <ul>
+    <li><strong>Main group:</strong> Valence for Period \(n\) = \(ns\) and \(np\).</li>
+    <li><strong>Transition series:</strong> Period \(n\) has \((n-1)d\) subshells (e.g., Period 4 → \(3d\)).</li>
+    <li><strong>Lanthanides/actinides:</strong> \(f\)-block is \((n-2)f\) (e.g., Period 6 lanthanides → \(4f\)).</li>
+  </ul>
+
+  <h2>8) Paramagnetism vs. diamagnetism</h2>
+  <ul>
+    <li><strong>Paramagnetic:</strong> one or more <strong>unpaired</strong> electrons → attracted to magnetic fields.</li>
+    <li><strong>Diamagnetic:</strong> all electrons <strong>paired</strong> → weakly repelled by magnetic fields.</li>
+  </ul>
+
+  <h2>9) Ions: remove/add in the right place (especially d-block!)</h2>
+  <div class="grid-2">
+    <div class="example">
+      <p><strong>\(\ce{Fe}\) (26):</strong> neutral \(\mathrm{[Ar]\,3d^6\,4s^2}\).</p>
+      <ul>
+        <li>\(\ce{Fe^{2+}}\): remove \(4s\) first → \(\mathrm{[Ar]\,3d^6}\).</li>
+        <li>\(\ce{Fe^{3+}}\): remove one more from \(3d\) → \(\mathrm{[Ar]\,3d^5}\) (half-filled \(d\)).</li>
+      </ul>
+    </div>
+    <div class="example">
+      <p><strong>\(\ce{Cu}\) (29):</strong> neutral \(\mathrm{[Ar]\,3d^{10}\,4s^1}\).</p>
+      <ul>
+        <li>\(\ce{Cu^+}\): remove \(4s\) → \(\mathrm{[Ar]\,3d^{10}}\) (diamagnetic).</li>
+        <li>\(\ce{Cu^{2+}}\): remove \(4s\) and one \(3d\) → \(\mathrm{[Ar]\,3d^9}\) (paramagnetic).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>10) Worked examples (step-by-step)</h2>
+
+  <div class="example">
+    <p><strong>Example A — Sulfur \(\ce{S}\) (\(Z=16\)):</strong></p>
+    <ol>
+      <li>Electrons = 16.</li>
+      <li>Fill: \(\mathrm{1s^2\,2s^2\,2p^6\,3s^2\,3p^4}\).</li>
+      <li>Noble gas: \(\mathrm{[Ne]\,3s^2\,3p^4}\).</li>
+      <li>Unpaired e⁻: two in \(3p\) (Hund) → paramagnetic.</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <p><strong>Example B — Chromium \(\ce{Cr}\) (\(Z=24\)):</strong></p>
+    <ol>
+      <li>Naïve: \(\mathrm{[Ar]\,3d^4\,4s^2}\).</li>
+      <li>Actual: \(\mathrm{[Ar]\,3d^5\,4s^1}\) (half-filled \(d\) stabilization).</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <p><strong>Example C — \(\ce{Ti^{2+}}\) (\(Z=22\)):</strong></p>
+    <ol>
+      <li>Neutral Ti: \(\mathrm{[Ar]\,3d^2\,4s^2}\).</li>
+      <li>Remove \(4s\) first (2 e⁻) → \(\mathrm{[Ar]\,3d^2}\).</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <p><strong>Example D — \(\ce{Br^-}\) (\(Z=35\)):</strong></p>
+    <ol>
+      <li>Neutral Br: \(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^5}\).</li>
+      <li>Gain 1 e⁻ → \(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^6} = \mathrm{[Kr]}\) (noble-gas configuration).</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <p><strong>Example E — \(\ce{Zn^{2+}}\) (\(Z=30\)):</strong></p>
+    <ol>
+      <li>Neutral Zn: \(\mathrm{[Ar]\,3d^{10}\,4s^2}\).</li>
+      <li>Remove \(4s^2\) → \(\mathrm{[Ar]\,3d^{10}}\) (fully filled \(d\), diamagnetic).</li>
+    </ol>
+  </div>
+
+  <h2>11) Common mistakes to avoid (read these!)</h2>
+  <ul>
+    <li><strong>Removing from \(3d\) before \(4s\) in cations:</strong> wrong. Always remove \(ns\) before \((n-1)d\) for transition metals.</li>
+    <li><strong>Pairing too early in \(p\)-orbitals:</strong> apply Hund’s rule; spread out singles first (↑ ↑ ↑) then pair (↑↓).</li>
+    <li><strong>Forgetting exceptions (Cr, Cu…):</strong> half-filled/filled \(d\) subshells stabilize by a small energy gain.</li>
+    <li><strong>Miscounting electrons for ions:</strong> cations have fewer electrons than \(Z\); anions have more.</li>
+    <li><strong>Mixing period number with \(d/f\) labels:</strong> remember \(3d\) belongs to Period 4, \(4f\) to Period 6.</li>
+  </ul>
+
+  <h2>12) Quick-reference: first 36 elements (ground states)</h2>
+  <table>
+    <thead>
+      <tr><th>Z</th><th>Element</th><th>Configuration (noble gas)</th><th>Unpaired e⁻ (qualitative)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>H</td><td>\(\mathrm{1s^1}\)</td><td>1</td></tr>
+      <tr><td>2</td><td>He</td><td>\(\mathrm{1s^2}\)</td><td>0</td></tr>
+      <tr><td>3</td><td>Li</td><td>\(\mathrm{[He]\,2s^1}\)</td><td>1</td></tr>
+      <tr><td>4</td><td>Be</td><td>\(\mathrm{[He]\,2s^2}\)</td><td>0</td></tr>
+      <tr><td>5</td><td>B</td><td>\(\mathrm{[He]\,2s^2\,2p^1}\)</td><td>1</td></tr>
+      <tr><td>6</td><td>C</td><td>\(\mathrm{[He]\,2s^2\,2p^2}\)</td><td>2</td></tr>
+      <tr><td>7</td><td>N</td><td>\(\mathrm{[He]\,2s^2\,2p^3}\)</td><td>3</td></tr>
+      <tr><td>8</td><td>O</td><td>\(\mathrm{[He]\,2s^2\,2p^4}\)</td><td>2</td></tr>
+      <tr><td>9</td><td>F</td><td>\(\mathrm{[He]\,2s^2\,2p^5}\)</td><td>1</td></tr>
+      <tr><td>10</td><td>Ne</td><td>\(\mathrm{[He]\,2s^2\,2p^6}\)</td><td>0</td></tr>
+      <tr><td>11</td><td>Na</td><td>\(\mathrm{[Ne]\,3s^1}\)</td><td>1</td></tr>
+      <tr><td>12</td><td>Mg</td><td>\(\mathrm{[Ne]\,3s^2}\)</td><td>0</td></tr>
+      <tr><td>13</td><td>Al</td><td>\(\mathrm{[Ne]\,3s^2\,3p^1}\)</td><td>1</td></tr>
+      <tr><td>14</td><td>Si</td><td>\(\mathrm{[Ne]\,3s^2\,3p^2}\)</td><td>2</td></tr>
+      <tr><td>15</td><td>P</td><td>\(\mathrm{[Ne]\,3s^2\,3p^3}\)</td><td>3</td></tr>
+      <tr><td>16</td><td>S</td><td>\(\mathrm{[Ne]\,3s^2\,3p^4}\)</td><td>2</td></tr>
+      <tr><td>17</td><td>Cl</td><td>\(\mathrm{[Ne]\,3s^2\,3p^5}\)</td><td>1</td></tr>
+      <tr><td>18</td><td>Ar</td><td>\(\mathrm{[Ne]\,3s^2\,3p^6}\)</td><td>0</td></tr>
+      <tr><td>19</td><td>K</td><td>\(\mathrm{[Ar]\,4s^1}\)</td><td>1</td></tr>
+      <tr><td>20</td><td>Ca</td><td>\(\mathrm{[Ar]\,4s^2}\)</td><td>0</td></tr>
+      <tr><td>21</td><td>Sc</td><td>\(\mathrm{[Ar]\,3d^1\,4s^2}\)</td><td>1</td></tr>
+      <tr><td>22</td><td>Ti</td><td>\(\mathrm{[Ar]\,3d^2\,4s^2}\)</td><td>2</td></tr>
+      <tr><td>23</td><td>V</td><td>\(\mathrm{[Ar]\,3d^3\,4s^2}\)</td><td>3</td></tr>
+      <tr><td>24</td><td>Cr</td><td><strong>\(\mathrm{[Ar]\,3d^5\,4s^1}\)</strong></td><td>6 (five \(d\) + one \(s\))</td></tr>
+      <tr><td>25</td><td>Mn</td><td>\(\mathrm{[Ar]\,3d^5\,4s^2}\)</td><td>5</td></tr>
+      <tr><td>26</td><td>Fe</td><td>\(\mathrm{[Ar]\,3d^6\,4s^2}\)</td><td>4</td></tr>
+      <tr><td>27</td><td>Co</td><td>\(\mathrm{[Ar]\,3d^7\,4s^2}\)</td><td>3</td></tr>
+      <tr><td>28</td><td>Ni</td><td>\(\mathrm{[Ar]\,3d^8\,4s^2}\)</td><td>2</td></tr>
+      <tr><td>29</td><td>Cu</td><td><strong>\(\mathrm{[Ar]\,3d^{10}\,4s^1}\)</strong></td><td>1</td></tr>
+      <tr><td>30</td><td>Zn</td><td>\(\mathrm{[Ar]\,3d^{10}\,4s^2}\)</td><td>0</td></tr>
+      <tr><td>31</td><td>Ga</td><td>\(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^1}\)</td><td>1</td></tr>
+      <tr><td>32</td><td>Ge</td><td>\(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^2}\)</td><td>2</td></tr>
+      <tr><td>33</td><td>As</td><td>\(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^3}\)</td><td>3</td></tr>
+      <tr><td>34</td><td>Se</td><td>\(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^4}\)</td><td>2</td></tr>
+      <tr><td>35</td><td>Br</td><td>\(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^5}\)</td><td>1</td></tr>
+      <tr><td>36</td><td>Kr</td><td>\(\mathrm{[Ar]\,3d^{10}\,4s^2\,4p^6}\)</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <h2>13) Practice Problems (Challenging & Comprehensive)</h2>
+  <ol>
+    <li>
+      Write ground-state configurations (noble-gas form) and state paramagnetic/diamagnetic:
+      <ol type="a">
+        <li>\(\ce{Si}\), \(\ce{P}\), \(\ce{Cl}\)</li>
+        <li>\(\ce{V}\), \(\ce{Mn}\), \(\ce{Zn}\)</li>
+        <li>\(\ce{Ag}\), \(\ce{Au}\) (watch exceptions)</li>
+      </ol>
+    </li>
+    <li>
+      For each ion, write the electron configuration and count unpaired electrons:
+      <ol type="a">
+        <li>\(\ce{Fe^{2+}}\), \(\ce{Fe^{3+}}\)</li>
+        <li>\(\ce{Cu^+}\), \(\ce{Cu^{2+}}\)</li>
+        <li>\(\ce{Cr^{3+}}\), \(\ce{Mn^{2+}}\)</li>
+      </ol>
+    </li>
+    <li>
+      An unknown metal \(M\) has a \(M^{2+}\) ion that is <em>diamagnetic</em> with configuration \(\mathrm{[Ar]\,3d^{10}}\).
+      <ol type="a">
+        <li>Identify \(M\) and its neutral-atom configuration.</li>
+        <li>Explain why \(M^{2+}\) is diamagnetic while \(M\) is not necessarily.</li>
+      </ol>
+    </li>
+    <li>
+      Explain, with reference to energy and exchange stabilization, why \(\ce{Cr}\) and \(\ce{Mo}\) adopt \(d^5 s^1\) ground states rather than \(d^4 s^2\).
+    </li>
+    <li>
+      For a Period 6 element in the lanthanide series, identify which principal level the \(f\)-electrons occupy and write a generic template for its configuration using \(\mathrm{[Xe]}\).
+    </li>
+    <li>
+      Determine whether the following are paramagnetic or diamagnetic and justify:
+      \(\ce{Ti^{2+}}, \ce{Zn^{2+}}, \ce{Cu^+}, \ce{Mn}, \ce{Ni^{2+}}\).
+    </li>
+  </ol>
+
+  <div class="nav">
+    <a href="../index.html">Home</a>
+    <a href="lec131.html">Prev</a>
+    <a href="lec133.html">Next</a>
+  </div>
+
+  <div class="muted">
+    Tip: For ions of transition metals, always remove electrons from the highest \(n\) subshell (e.g., \(4s\)) before \((n-1)d\). Keep a small “exceptions” list in your notes for \(\ce{Cr}\), \(\ce{Cu}\), \(\ce{Mo}\), \(\ce{Ag}\), \(\ce{Au}\).
+  </div>
+</main>
+</body>
+</html>
